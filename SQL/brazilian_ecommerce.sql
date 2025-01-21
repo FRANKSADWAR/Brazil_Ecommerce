@@ -124,6 +124,24 @@ ORDER BY
   month_no ASC;
 
 
+-- Count of orders and the difference of orders per quarter
+SELECT
+  QUARTER(order_purchase_timestamp) AS QUARTER,
+  MONTH(order_purchase_timestamp) AS month_no,
+  MONTHNAME(order_purchase_timestamp) AS month_nm,
+  COUNT(order_id) AS orders,
+  MAX(COUNT(order_id)) OVER() AS max_overall_orders,
+  MAX(COUNT(order_id)) OVER (PARTITION BY QUARTER(order_purchase_timestamp)) AS max_orders_per_quarter
+FROM
+  olist_orders
+WHERE
+  YEAR(order_purchase_timestamp) = 2018
+GROUP BY
+  QUARTER(order_purchase_timestamp),
+  MONTHNAME(order_purchase_timestamp)
+ORDER BY
+  month_no ASC;
+
 --- Orders by state
 WITH customer_orders AS (
     SELECT orders.order_id,
