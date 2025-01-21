@@ -93,6 +93,37 @@ ALTER TABLE olist_orders
 ADD INDEX orders_idx (order_id);
 
 
+--- Order purchase date by MONTH, YEAR, WEEK, QUARTER
+WITH
+  order_dates AS (
+    SELECT
+      order_id,
+      YEAR(order_purchase_timestamp) AS order_year,
+      MONTH(order_purchase_timestamp) AS month_no,
+      WEEK(order_purchase_timestamp, 1) AS week_no,
+      QUARTER(order_purchase_timestamp) AS quarter_no
+    FROM
+      olist_orders
+  )
+SELECT CONCAT(order_year, ' Q', quarter_no) AS year_quarter FROM order_dates
+
+--- Order numbers by Quarter
+SELECT
+  QUARTER(order_purchase_timestamp) AS QUARTER,
+  MONTH(order_purchase_timestamp) AS month_no,
+  MONTHNAME(order_purchase_timestamp) AS month_nm,
+  COUNT(order_id) AS orders
+FROM
+  olist_orders
+WHERE
+  YEAR(order_purchase_timestamp) = 2018
+GROUP BY
+  QUARTER(order_purchase_timestamp),
+  MONTHNAME(order_purchase_timestamp)
+ORDER BY
+  month_no ASC;
+
+
 --- Orders by state
 WITH customer_orders AS (
     SELECT orders.order_id,
