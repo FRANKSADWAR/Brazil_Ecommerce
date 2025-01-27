@@ -182,6 +182,32 @@ FROM olist_orders AS orders
     INNER JOIN olist_customers AS customers ON orders.customer_id = customers.customer_id 
 
 
+-- Count of orders per quarter of each year
+WITH
+  order_dates AS (
+    SELECT
+      order_id,
+      YEAR(order_purchase_timestamp) AS order_year,
+      MONTH(order_purchase_timestamp) AS month_no,
+      MONTHNAME(order_purchase_timestamp) AS month_name,
+      WEEK(order_purchase_timestamp, 1) AS week_no,
+      QUARTER(order_purchase_timestamp) AS quarter_no
+    FROM
+      olist_orders
+  )
+SELECT 
+    COUNT(order_id) AS orders,
+    quarter_year
+FROM ( 
+    SELECT order_id,
+    CONCAT('Q',quarter_no,'  ',order_year) AS quarter_year,
+    order_year,
+    quarter_no
+    FROM order_dates 
+    ) AS orders
+    GROUP BY quarter_year
+    ORDER BY order_year ASC, quarter_no ASC
+
 
 
 
