@@ -208,6 +208,24 @@ FROM (
     GROUP BY quarter_year
     ORDER BY order_year ASC, quarter_no ASC
 
+-- Orders by time of day
+WITH
+  order_dates AS (
+    SELECT
+      order_id,
+      YEAR(order_purchase_timestamp) AS order_year,
+      MONTH(order_purchase_timestamp) AS month_no,
+      MONTHNAME(order_purchase_timestamp) AS month_name,
+      WEEK(order_purchase_timestamp, 1) AS week_no,
+      QUARTER(order_purchase_timestamp) AS quarter_no,
+      DAYNAME(order_purchase_timestamp) AS day_name,
+      DAYOFWEEK(order_purchase_timestamp) AS day_of_week,
+      HOUR(order_purchase_timestamp) AS time_of_day
+    FROM
+      olist_orders
+  )
+SELECT COUNT(order_id) AS orders, time_of_day FROM order_dates GROUP BY time_of_day
+ORDER BY time_of_day ASC
 
 
 
