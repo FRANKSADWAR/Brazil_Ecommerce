@@ -211,4 +211,24 @@ ORDER BY day_of_week ASC
 
 
 -- Count of orders by state
-
+WITH
+  orders_region AS (
+    SELECT
+      orders.order_id,
+      orders.customer_id,
+      orders.order_status,
+      geo.geolocation_city,
+      geo.geolocation_state
+    FROM
+      olist_orders AS orders
+      INNER JOIN olist_customers AS customers ON orders.customer_id = customers.customer_id
+      INNER JOIN olist_geolocation AS geo ON customers.customer_zip_code_prefix = geo.geolocation_zip_code_prefix
+  )
+SELECT
+  COUNT(DISTINCT order_id) AS orders,
+  geolocation_state AS state
+FROM
+  orders_region
+GROUP BY
+  geolocation_state
+ORDER BY orders DESC
