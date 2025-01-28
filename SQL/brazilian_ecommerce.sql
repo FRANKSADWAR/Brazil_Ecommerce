@@ -142,44 +142,7 @@ GROUP BY
 ORDER BY
   month_no ASC;
 
---- Orders by state
-WITH customer_orders AS (
-    SELECT orders.order_id,
-        orders.customer_id,
-        orders.order_status,
-        customers.customer_state
-    FROM olist_orders AS orders
-        INNER JOIN olist_customers AS customers ON orders.customer_id = customers.customer_id
-)
-SELECT COUNT(order_id) AS orders,
-    customer_state
-FROM customer_orders
-GROUP BY customer_state;
-SELECT customer_state,
-    COUNT(order_id) AS order_count
-FROM (
-        SELECT orders.order_id,
-            orders.customer_id,
-            orders.order_status,
-            customers.customer_zip_code_prefix,
-            customers.customer_city,
-            customers.customer_state
-        FROM olist_orders AS orders
-            INNER JOIN olist_customers AS customers ON orders.customer_id = customers.customer_id
-    ) AS orders_per_region
-GROUP BY customer_state --- Create a view instead
-    CREATE VIEW orders_per_region(
-        order_id,
-        customer_id,
-        order_status,
-        customer_state
-    ) AS
-SELECT orders.order_id,
-    orders.customer_id,
-    orders.order_status,
-    customers.customer_state
-FROM olist_orders AS orders
-    INNER JOIN olist_customers AS customers ON orders.customer_id = customers.customer_id 
+
 
 
 -- Count of orders per quarter of each year
