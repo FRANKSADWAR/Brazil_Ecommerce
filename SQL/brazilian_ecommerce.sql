@@ -210,4 +210,5 @@ SELECT COUNT(order_id) AS orders, day_name, day_of_week FROM order_dates GROUP B
 ORDER BY day_of_week ASC
 
 
+-- Count of orders by state
 
