@@ -260,3 +260,13 @@ FROM
 GROUP BY
   geolocation_city
 ORDER BY orders DESC
+
+
+--- Payments through the e-commerce platform
+SELECT
+  payment_type,
+  SUM(payment_value) AS payments
+FROM
+  olist_order_payments
+GROUP BY
+  payment_type;
