@@ -270,3 +270,20 @@ FROM
   olist_order_payments
 GROUP BY
   payment_type;
+
+
+-- Investigate the time it takes to deliver to a customer (Start building the feature dataset)
+SELECT
+  order_id,
+  order_status,
+  order_delivered_carrier_date,
+  order_purchase_timestamp,
+  DATEDIFF(order_delivered_carrier_date, order_purchase_timestamp) AS time_to_deliver_to_carrier,
+  DATEDIFF(order_delivered_customer_date, order_purchase_timestamp) AS time_to_deliver_to_customer,
+  DATEDIFF(order_estimated_delivery_date, order_purchase_timestamp) AS estimated_delivery_period,
+  TIMESTAMP(order_delivered_customer_date) AS order_delivered_customer_date,
+  order_estimated_delivery_date
+FROM
+  olist_orders
+WHERE
+  order_status = 'delivered';
