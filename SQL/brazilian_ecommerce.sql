@@ -144,6 +144,14 @@ ORDER BY
 
 
 
+WITH sales_orders_delivered AS (SELECT
+  SELECT COUNT(sales.order_id) AS orders_del
+  FROM olist_orders AS orders
+  WHERE orders.order_status = 'delivered'
+)
+SELECT * FROM sales_orders_delivered
+
+
 
 -- Count of orders per quarter of each year
 WITH
