@@ -328,6 +328,25 @@ FROM
 GROUP BY
   DATE(order_purchase_timestamp)
 
+-- YEARLY SALES REVENUE TRENDS
+WITH
+  revenue AS (
+    SELECT
+      pay.order_id,
+      YEAR(olist_orders.order_purchase_timestamp) AS year_no,
+      pay.payment_value
+    FROM
+      olist_order_payments AS pay
+      INNER JOIN olist_orders ON pay.order_id = olist_orders.order_id
+  )
+SELECT
+  year_no,
+  SUM(payment_value) AS sales_value
+FROM
+  revenue
+GROUP BY
+  year_no
+
 
 
 -- Monthly sales revenue trends
