@@ -296,3 +296,22 @@ FROM
 WHERE
   order_status = 'delivered';
 
+-- Monthly sales revenue trends
+WITH
+  revenue AS (
+    SELECT
+      SUM(pay.payment_value) AS sales_revenue,
+      YEAR(olist_orders.order_purchase_timestamp) AS year_no,
+      MONTH(olist_orders.order_purchase_timestamp) AS month_no
+    FROM
+      olist_order_payments AS pay
+      INNER JOIN olist_orders ON pay.order_id = olist_orders.order_id
+    GROUP BY
+      year_no,
+      month_no
+  )
+SELECT
+  sales_revenue,
+  CONCAT(year_no, ' ', month_no) AS YEARMON
+FROM
+  revenue
