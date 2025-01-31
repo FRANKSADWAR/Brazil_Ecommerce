@@ -296,6 +296,28 @@ FROM
 WHERE
   order_status = 'delivered';
 
+-- General trend in Sales revenue
+WITH
+  revenue AS (
+    SELECT
+      pay.order_id,
+      olist_orders.order_purchase_timestamp,
+      pay.payment_value
+    FROM
+      olist_order_payments AS pay
+      INNER JOIN olist_orders ON pay.order_id = olist_orders.order_id
+    WHERE {{ date }}
+  )
+SELECT
+  DATE(order_purchase_timestamp) AS date_of,
+  SUM(payment_value) AS sales_value
+FROM
+  revenue
+GROUP BY
+  DATE(order_purchase_timestamp)
+
+
+
 -- Monthly sales revenue trends
 WITH
   revenue AS (
@@ -315,3 +337,5 @@ SELECT
   CONCAT(year_no, ' ', month_no) AS YEARMON
 FROM
   revenue
+
+
