@@ -93,6 +93,18 @@ ALTER TABLE olist_orders
 ADD INDEX orders_idx (order_id);
 
 
+
+-- General sales order count trends
+SELECT
+  DATE(order_purchase_timestamp) AS date_,
+  COUNT(order_id) AS orders
+FROM
+  olist_orders
+WHERE {{ date }}
+GROUP BY
+  DATE(order_purchase_timestamp)
+
+
 --- Order purchase date by MONTH, YEAR, WEEK, QUARTER
 WITH
   order_dates AS (
