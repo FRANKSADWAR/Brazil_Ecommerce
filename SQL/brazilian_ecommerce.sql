@@ -388,7 +388,8 @@ WITH
       INNER JOIN olist_products AS op ON itm.product_id = op.product_id
       INNER JOIN olist_orders AS orders ON itm.order_id = orders.order_id
     WHERE
-      op.product_category IS NOT NULL
+       {{ product_category }}
+      AND op.product_category IS NOT NULL
   )
 SELECT
   yearno,
@@ -402,7 +403,6 @@ GROUP BY
   yearno,
   month_no,
   product_category
-HAVING(revenue > 10000)
 ORDER BY
   yearno ASC,
   month_no ASC
@@ -426,7 +426,8 @@ WITH
       INNER JOIN olist_products AS op ON itm.product_id = op.product_id
       INNER JOIN olist_orders AS orders ON itm.order_id = orders.order_id
     WHERE
-      op.product_category IS NOT NULL
+      {{ product_category }}
+      AND op.product_category IS NOT NULL
   )
 SELECT
   yearno,
