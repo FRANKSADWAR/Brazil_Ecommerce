@@ -315,6 +315,31 @@ SELECT
   SUM(payment_value) AS total_revenue 
 FROM olist_order_payments;
 
+-- Order count vs sales order generated from the platform
+WITH
+  orders_revenue AS (
+    SELECT
+      orders.order_id,
+      DATE(orders.order_purchase_timestamp) AS order_date,
+      MONTH(orders.order_purchase_timestamp) AS month_no,
+      YEAR(orders.order_purchase_timestamp) AS yearno,
+      pay.payment_value
+    FROM
+      olist_orders AS orders
+      INNER JOIN olist_order_payments AS pay ON orders.order_id = pay.order_id
+  )
+SELECT
+  yearno,
+  month_no,
+  CONCAT(yearno, ' ', month_no) AS yearmon,
+  COUNT(DISTINCT order_id) AS order_count,
+  SUM(payment_value) AS revenues
+FROM
+  orders_revenue
+GROUP BY
+  yearno,
+  month_no
+  
 
 -- General trend in Sales revenue
 WITH
@@ -453,3 +478,4 @@ GROUP BY
 ORDER BY
   yearno ASC,
   quarterno ASC
+
