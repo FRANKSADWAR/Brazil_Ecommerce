@@ -308,6 +308,14 @@ FROM
 WHERE
   order_status = 'delivered';
 
+
+
+-- Total sales revenue
+SELECT 
+  SUM(payment_value) AS total_revenue 
+FROM olist_order_payments;
+
+
 -- General trend in Sales revenue
 WITH
   revenue AS (
