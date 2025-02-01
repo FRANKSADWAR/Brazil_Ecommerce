@@ -370,3 +370,18 @@ FROM
   revenue
 
 
+--- Product category purchases
+WITH
+  product_category_purchases AS (
+    SELECT
+      itm.order_id,
+      itm.product_id,
+      itm.price,
+      itm.freight_value,
+      orders.order_purchase_timestamp,
+      op.product_category
+    FROM
+      olist_order_items AS itm
+      INNER JOIN olist_products AS op ON itm.product_id = op.product_id
+      INNER JOIN olist_orders AS orders ON itm.order_id = orders.order_id
+  )
