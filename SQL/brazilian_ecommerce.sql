@@ -480,3 +480,30 @@ ORDER BY
   yearno ASC,
   quarterno ASC
 
+--- Sales revenue by product category
+
+WITH
+  product_category_purchases AS (
+    SELECT
+      itm.order_id,
+      itm.product_id,
+      itm.price,
+      itm.freight_value,
+      DATE(olist_orders.order_purchase_timestamp) AS order_date,
+      YEAR(olist_orders.order_purchase_timestamp) AS yearno,
+      MONTH(olist_orders.order_purchase_timestamp) AS month_no,
+      QUARTER(olist_orders.order_purchase_timestamp) AS quarterno,
+      IFNULL(olist_products.product_category, "Unknown") AS product_category
+    FROM
+      olist_order_items AS itm
+      INNER JOIN olist_products ON itm.product_id = olist_products.product_id
+      INNER JOIN olist_orders ON itm.order_id = olist_orders.order_id
+  )
+SELECT
+  "Products" AS all_products,
+  product_category,
+  SUM(price) AS revenue_per_product_category
+FROM
+  product_category_purchases
+GROUP BY
+  product_category
