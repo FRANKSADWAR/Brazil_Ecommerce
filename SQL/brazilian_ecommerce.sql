@@ -406,3 +406,41 @@ HAVING(revenue > 10000)
 ORDER BY
   yearno ASC,
   month_no ASC
+
+
+-- Configure the same query for quarters only
+WITH
+  product_category_purchases AS (
+    SELECT
+      itm.order_id,
+      itm.product_id,
+      itm.price,
+      itm.freight_value,
+      DATE(orders.order_purchase_timestamp) AS order_date,
+      YEAR(orders.order_purchase_timestamp) AS yearno,
+      MONTH(orders.order_purchase_timestamp) AS month_no,
+      QUARTER(orders.order_purchase_timestamp) AS quarterno,
+      op.product_category
+    FROM
+      olist_order_items AS itm
+      INNER JOIN olist_products AS op ON itm.product_id = op.product_id
+      INNER JOIN olist_orders AS orders ON itm.order_id = orders.order_id
+    WHERE
+      op.product_category IS NOT NULL
+  )
+SELECT
+  yearno,
+  quarterno,
+  CONCAT(yearno, ' ', quarterno) AS yearqt,
+  product_category,
+  SUM(price) AS revenue
+FROM
+  product_category_purchases
+GROUP BY
+  yearno,
+  quarterno,
+  product_category
+
+ORDER BY
+  yearno ASC,
+  quarterno ASC
