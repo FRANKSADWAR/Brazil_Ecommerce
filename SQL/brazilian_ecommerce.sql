@@ -334,7 +334,7 @@ SELECT
   CONCAT(yearno, ' ', month_no) AS yearmon,
   COUNT(DISTINCT order_id) AS order_count,
   SUM(payment_value) AS revenues,
-  (SUM(payment_value)/SUM(order_count)) AS average_order_value
+  (SUM(payment_value)/COUNT(DISTINCT order_count)) AS average_order_value
 FROM
   orders_revenue
 GROUP BY
