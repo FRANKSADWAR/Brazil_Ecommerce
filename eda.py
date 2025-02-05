@@ -30,4 +30,10 @@ names = ['olist_customer','olist_geolocation','olist_orders', 'olist_orders','ol
 
 ### Create a new dataframe
 data_info = pd.DataFrame({})
+data_info['dataset'] = names
+data_info['n_rows'] = [df.shape[0] for df in datasets]
+data_info['n_cols'] = [df.shape[1] for df in datasets ]
+data_info['null_count'] = [df.isnull().sum().sum() for df in datasets]
+data_info['qty_null_columns'] = [len([col for col, null in df.isnull().sum().items() if null > 0]) for df in datasets]
+data_info['null_columns']
 
