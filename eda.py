@@ -46,3 +46,7 @@ df_orders = olist_orders.merge(olist_customer, how = 'left', on ='customer_id')
 fig, ax = plt.subplots(figsize = (14,6))
 single_countplot(df_orders, x ='order_status', ax = ax)
 plt.show()
+
+
+## Extract the time information from the e-commerce
+
