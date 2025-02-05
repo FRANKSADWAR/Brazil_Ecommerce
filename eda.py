@@ -48,5 +48,19 @@ single_countplot(df_orders, x ='order_status', ax = ax)
 plt.show()
 
 
-## Extract the time information from the e-commerce
+## Extract the time data type information from the dataset
+timestamp_cols = ['order_purchase_timestamp','order_approved_at','order_delivered_carrier_date','order_estimated_delivery_date']
+for col in timestamp_cols:
+    df_orders[col] = pd.to_datetime(df_orders[col])
+
+## Extract the attributes
+df_orders['order_purchase_year'] = df_orders['order_purchase_timestamp'].dt.year
+df_orders['order_purchase_month'] = df_orders['order_purchase_timestamp'].dt.month
+df_orders['order_purchase_month_name'] = df_orders['order_purchase_timestamp'].dt.month_name
+df_orders['order_purchase_quarter'] = df_orders['order_purchase_timestamp'].dt.quarter
+df_orders['order_purchase_week_no'] = df_orders['order_purchase_timestamp'].dt.isocalendar().week
+df_orders['order_purchase_day'] = df_orders['order_purchase_timestamp'].dt.day_name()
+df_orders['order_purchase_hour'] = df_orders['order_purchase_timestamp'].dt.hour()
+
+
 
