@@ -67,4 +67,8 @@ df_orders['order_purchase_date'] = df_orders['order_purchase_timestamp'].apply(l
 df_orders['order_purchase_dayofweek'] = df_orders['order_purchase_timestamp'].dt.dayofweek
 df_orders['order_purchase_dayofweek_name'] = df_orders['order_purchase_timestamp'].apply(lambda x: x.strftime('%a'))
 
-## Extracting the 
+
+## Bins the hours
+hours_bins = [-0.1, 6, 12, 18, 23]
+hours_labels = ['Dawn','Morning','Afternoon','Night']
+df_orders['order_purchase_time_day'] = pd.cut(df_orders['order_purchase_hour'], hours_bins, labels = hours_labels)
