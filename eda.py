@@ -6,6 +6,7 @@ import plotly.offline as py
 import plotly.express as px
 import plotly.graph_objs as go
 import json
+from viz_utils import *
 
 import requests
 from PIL import Image
@@ -35,5 +36,13 @@ data_info['n_rows'] = [df.shape[0] for df in datasets]
 data_info['n_cols'] = [df.shape[1] for df in datasets ]
 data_info['null_count'] = [df.isnull().sum().sum() for df in datasets]
 data_info['qty_null_columns'] = [len([col for col, null in df.isnull().sum().items() if null > 0]) for df in datasets]
-data_info['null_columns']
+data_info['null_columns'] = [', '.join([col for col, no_null in df.isnull().sum().items() if no_null > 0]) for df in datasets]
 
+data_info.style.background_gradient()
+
+### Exploratory data analysis
+# Total orders in the e-commerce platform
+df_orders = olist_orders.merge(olist_customer, how = 'left', on ='customer_id')
+fig, ax = plt.subplots(figsize = (14,6))
+single_countplot(df_orders, x ='order_status', ax = ax)
+plt.show()
