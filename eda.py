@@ -60,7 +60,11 @@ df_orders['order_purchase_month_name'] = df_orders['order_purchase_timestamp'].d
 df_orders['order_purchase_quarter'] = df_orders['order_purchase_timestamp'].dt.quarter
 df_orders['order_purchase_week_no'] = df_orders['order_purchase_timestamp'].dt.isocalendar().week
 df_orders['order_purchase_day'] = df_orders['order_purchase_timestamp'].dt.day_name()
-df_orders['order_purchase_hour'] = df_orders['order_purchase_timestamp'].dt.hour()
+df_orders['order_purchase_hour'] = df_orders['order_purchase_timestamp'].dt.hour
+df_orders['order_purchase_tod'] = df_orders['order_purchase_timestamp'].dt.strftime('%H:%M:%S')
+df_orders['order_purchase_year_month'] = df_orders['order_purchase_timestamp'].dt.strftime('%Y%m')
+df_orders['order_purchase_date'] = df_orders['order_purchase_timestamp'].apply(lambda x: x.strftime('%Y%m%d'))
+df_orders['order_purchase_dayofweek'] = df_orders['order_purchase_timestamp'].dt.dayofweek
+df_orders['order_purchase_dayofweek_name'] = df_orders['order_purchase_timestamp'].apply(lambda x: x.strftime('%a'))
 
-
-
+## Extracting the 
