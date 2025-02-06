@@ -119,4 +119,14 @@ plt.tight_layout()
 plt.show()
 
 
-### ----
+### ---- A comparison between 2017 and 2018
+fig = plt.figure(constrained_layout = True)
+
+## Define the axis
+gs = GridSpec(1, 3, figure = fig)
+ax1 = fig.add_subplot(gs[0, 0])
+ax2 = fig.add_subplot(gs[0, 1:])
+
+## Annotation Comparison of Order trends on e-commerce between 2017 and 2018
+df_orders_compare = df_orders.query('order_purchase_year in (2017,2018) & order_purchase_month <= 8')
+year_orders = df_orders_compare['order_purchase_year'].value_counts()
