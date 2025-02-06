@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
 import plotly.offline as py
 import plotly.express as px
 import plotly.graph_objs as go
@@ -72,4 +73,42 @@ df_orders['order_purchase_dayofweek_name'] = df_orders['order_purchase_timestamp
 hours_bins = [-0.1, 6, 12, 18, 23]
 hours_labels = ['Dawn','Morning','Afternoon','Night']
 df_orders['order_purchase_time_day'] = pd.cut(df_orders['order_purchase_hour'], hours_bins, labels = hours_labels) ## review pd.cut code
+
+## Creating a figure and GridSpec to collect the visualizations
+fig = plt.figure(constrained_layout = True, figsize=(14,11))
+
+## Define the axes
+gs = GridSpec(2,2, figure=fig)
+ax1 = fig.add_subplot(gs[0, :])
+ax2 = fig.add_subplot(gs[1 ,0])
+ax3 = fig.add_subplot(gs[1, 1])
+
+## Add the plots to the sub-plots
+sns.lineplot(data = df_orders['order_purchase_year_month'].value_counts().sort_index(),
+            ax = ax1, color = 'darkslateblue', linewidth =2)
+
+ax1.annotate(f'Highest Orders \nReceived', (13,7500),
+    xytext=(-75, -25), textcoords = 'offset points', bbox = dict(boxstyle = "round4", fc="w", pad = 0.8),
+    arrowprops=dict(arrowstyle='-|>', fw='w'), color = 'dimgrey', ha = 'center'
+)
+
+ax1.annotate(f'Noise on data \n (huge decrease)', (23,0), xytext = (48,25),
+    textcoords='offset points', bbox = dict(boxstyle="round4", fc="w", pad = 0.5),
+    arrowprops=dict(arrowstyle='-|>', fc="w"), color = 'dimgrey', ha ='center'
+)
+
+format_spines(ax1, right_border= False)
+
+for tick in ax1.get_xticklabels():
+    tick.set_rotation(45)
+ax1.set_title('Trend of Orders in Brazil E-commerce', size =14, color = 'dimgrey')
+
+
+## Create a bar chart for total orders by day of week
+single_countplot(df_orders, x = 'order_purchase_dayofweek', ax = ax2, order =False, palette='YlGnBu')
+weekday_label = ['Mon','Tue','Wed','Thur','Fri','Sat','Sun']
+ax2.set_xticklabels(weekday_label)
+ax2.set_title('Total orders by Day of Week', size = 14, color ='dimgrey', pad = 20)
+
+## Create a bar chart
 

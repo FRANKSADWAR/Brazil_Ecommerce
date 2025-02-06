@@ -12,6 +12,18 @@ from math import ceil
 
 # Formatando eixos do matplotlib
 def format_spines(ax, right_border=True):
+    """
+    Format the spines of a matplotlib Axes object.
+
+    Parameters:
+        ax (matplotlib.axes.Axes): The Axes object whose spines are to be formatted.
+        right_border (bool, optional): If True, sets the right spine color to light gray.
+                                    If False, sets the right spine color to white. 
+                                    Defaults to True.
+
+    The function sets the bottom and left spines to a light gray color, hides the top spine,
+    and sets the background color of the Axes to white.
+    """
     # Setting up colors
     ax.spines['bottom'].set_color('#CCCCCC')
     ax.spines['left'].set_color('#CCCCCC')
