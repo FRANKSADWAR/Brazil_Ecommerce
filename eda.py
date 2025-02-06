@@ -110,5 +110,12 @@ weekday_label = ['Mon','Tue','Wed','Thur','Fri','Sat','Sun']
 ax2.set_xticklabels(weekday_label)
 ax2.set_title('Total orders by Day of Week', size = 14, color ='dimgrey', pad = 20)
 
-## Create a bar chart
+## Create a bar chart for orders by time of day
+day_color_list = ['darkslateblue','deepskyblue','darkorange','purple']
+single_countplot(df_orders, x ='order_purchase_time_day', ax = ax3, order = False, palette=day_color_list)
+ax3.set_title('Total orders by time of day', size = 14, color = 'dimgrey', pad =20)
+
+plt.tight_layout()
+plt.show()
+
 
