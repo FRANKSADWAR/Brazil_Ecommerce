@@ -130,3 +130,19 @@ ax2 = fig.add_subplot(gs[0, 1:])
 ## Annotation Comparison of Order trends on e-commerce between 2017 and 2018
 df_orders_compare = df_orders.query('order_purchase_year in (2017,2018) & order_purchase_month <= 8')
 year_orders = df_orders_compare['order_purchase_year'].value_counts()
+growth =  int(round(100 *(1 + year_orders[2017] / year_orders[2018]),0))
+ax1.text(0.0, 0.73, f'{year_orders[2017]}', fontsize = 40, color ='mediumseagreen', ha='center')
+ax1.text(0.00, 0.64, 'orders registered in 2017 \n between January and August', fonsize = 60, color = 'darkseablue', ha='center')
+ax1.text(0.00, 0.31, 'orders registered in 2018 \n between January and August', fontsize = 10, ha='center')
+signal = '+' if growth > 0 else '-'
+ax1.text(0.00, 0.20, f'{signal}{growth}%', fontsize = 14, ha='center',color ='white',
+        style='italic', weight ='bold', bbox = dict(facecolor = 'navy', alpha =0.5, pad =10, boxstyle ='round', pad =0.7))
+ax1.axis('off')
+
+## Bar chart comparison of sales in 2017 and 2018
+single_countplot(df_orders, x ='order_purchase_month', hue ='order_purchase_year', ax = ax2, order = False, palette = 'YlGnBu')
+month_label = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug']
+ax2.set_xticklabels(month_label)
+ax2.set_title('Orders comparison between 2017 and 2018 : January to August',size = 12, color= 'dimgrey', pad =20)
+plt.legend(loc = 'lower right')
+plt.show()
