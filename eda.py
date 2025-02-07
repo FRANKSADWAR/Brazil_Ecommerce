@@ -166,4 +166,4 @@ geo_prep = geo_prep[geo_prep.geolocation_lng <= -34.79314722]
 
 geo_group = geo_prep.groupby(by = 'geolocation_zip_code_prefix', as_index = False).min()
 
-## Mrging all information
+## Merging all information
