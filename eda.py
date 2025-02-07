@@ -146,3 +146,13 @@ ax2.set_xticklabels(month_label)
 ax2.set_title('Orders comparison between 2017 and 2018 : January to August',size = 12, color= 'dimgrey', pad =20)
 plt.legend(loc = 'lower right')
 plt.show()
+
+
+### USing geo-location to analyze the Brazil e-commerce data
+df_orders_items = df_orders.merge(olist_order_items, how ='left', on='order_id')
+r = requests.get("https://servicodados.ibge.gov.br/api/v1/localidades/mesorregioes")
+content = [c['UF'] for c in json.loads(r.text)]
+br_info = pd.DataFrame(content)
+br_info['nome_regiao'] = br_info['regiao'].apply(lambda x: x['nome'])
+br_info.drop('regiao', axis =1, inplace =True)
+br_info.drop_duplicates(inplace= True)
