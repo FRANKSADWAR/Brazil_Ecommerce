@@ -156,3 +156,14 @@ br_info = pd.DataFrame(content)
 br_info['nome_regiao'] = br_info['regiao'].apply(lambda x: x['nome'])
 br_info.drop('regiao', axis =1, inplace =True)
 br_info.drop_duplicates(inplace= True)
+
+
+## clipping locations to those within the Brazilian map
+geo_prep = olist_geolocation[olist_geolocation.geolocation_lat <= 5.27438888]
+geo_prep = geo_prep[geo_prep.geolocation_lng >= -73.98283055]
+geo_prep = geo_prep[geo_prep.geolocation_lat >= -33.75116944]
+geo_prep = geo_prep[geo_prep.geolocation_lng <= -34.79314722]
+
+geo_group = geo_prep.groupby(by = 'geolocation_zip_code_prefix', as_index = False).min()
+
+## Mrging all information
