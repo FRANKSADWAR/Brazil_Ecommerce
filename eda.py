@@ -167,3 +167,9 @@ geo_prep = geo_prep[geo_prep.geolocation_lng <= -34.79314722]
 geo_group = geo_prep.groupby(by = 'geolocation_zip_code_prefix', as_index = False).min()
 
 ## Merging all information
+df_order_items = df_orders_items.merge(br_info, how ='left', left_on ='customer_state', right_on ='sigla')
+df_order_items = df_order_items.merge(geo_group, how ='left', 
+                    left_on = 'customer_zip_code_prefix',
+                    right_on= 'geolocation_zip_code_prefix')
+
+df_orders_items.head()
