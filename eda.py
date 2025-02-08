@@ -57,7 +57,7 @@ for col in timestamp_cols:
 ## Extract the attributes
 df_orders['order_purchase_year'] = df_orders['order_purchase_timestamp'].dt.year
 df_orders['order_purchase_month'] = df_orders['order_purchase_timestamp'].dt.month
-df_orders['order_purchase_month_name'] = df_orders['order_purchase_timestamp'].dt.month_name
+df_orders['order_purchase_month_name'] = df_orders['order_purchase_timestamp'].dt.month_name()
 df_orders['order_purchase_quarter'] = df_orders['order_purchase_timestamp'].dt.quarter
 df_orders['order_purchase_week_no'] = df_orders['order_purchase_timestamp'].dt.isocalendar().week
 df_orders['order_purchase_day'] = df_orders['order_purchase_timestamp'].dt.day_name()
@@ -190,3 +190,4 @@ df_regions_group.reset_index(drop = True, inplace= True)
 df_cities_group = df_orders_filt.groupby(by="geolocation_city", as_index= False).count().loc[:,['geolocation_city', 'order_id']]
 df_cities_group = df_cities_group.sort_values(by='order_id', ascending= False).reset_index(drop = True)
 df_cities_group = df_cities_group.iloc[:10, :]
+
