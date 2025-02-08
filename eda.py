@@ -173,3 +173,10 @@ df_order_items = df_order_items.merge(geo_group, how ='left',
                     right_on= 'geolocation_zip_code_prefix')
 
 df_orders_items.head()
+
+
+### A summary of the orders by region, state and city
+df_orders_filt = df_order_items[(df_order_items['order_purchase_year_month'].astype(int) >= 201701)]
+df_orders_filt = df_orders_filt[(df_orders_filt['order_purchase_year_month'].astype(int) <= 201808)]
+
+# Groupng the data filter by region
