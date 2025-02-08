@@ -180,3 +180,13 @@ df_orders_filt = df_order_items[(df_order_items['order_purchase_year_month'].ast
 df_orders_filt = df_orders_filt[(df_orders_filt['order_purchase_year_month'].astype(int) <= 201808)]
 
 # Groupng the data filter by region
+df_regions_group = df_orders_filt.groupby(by=['order_purchase_year_month','nemo_regiao'], as_index = False)
+df_regions_group = df_regions_group.agg({'customer_id':'count', 'price':'sum'}).sort_values(by='order_purchase_year_month')
+
+df_regions_group.columns = ['month', 'region','order_count','order_amount']
+df_regions_group.reset_index(drop = True, inplace= True)
+
+### Group the data by city and get only the top 10 cities
+df_cities_group = df_orders_filt.groupby(by="geolocation_city", as_index= False).count().loc[:,['geolocation_city', 'order_id']]
+df_cities_group = df_cities_group.sort_values(by='order_id', ascending= False).reset_index(drop = True)
+df_cities_group = df_cities_group.iloc[:10, :]
