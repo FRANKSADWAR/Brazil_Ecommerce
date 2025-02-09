@@ -189,5 +189,4 @@ df_regions_group.reset_index(drop = True, inplace= True)
 ### Group the data by city and get only the top 10 cities
 df_cities_group = df_orders_filt.groupby(by="geolocation_city", as_index= False).count().loc[:,['geolocation_city', 'order_id']]
 df_cities_group = df_cities_group.sort_values(by='order_id', ascending= False).reset_index(drop = True)
-df_cities_group = df_cities_group.iloc[:10, :]
-
+#df_cities_group = df_cities_group.iloc[:10, :]
