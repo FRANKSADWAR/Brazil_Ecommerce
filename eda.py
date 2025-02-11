@@ -217,7 +217,11 @@ ax2.set_title('Top 10 Brazillian Cities with ordr volumes')
 ax2.set_ylabel('Orders')
 ax2.set_xlabel('City')
 
-
+## Total orders by state
+single_countplot(y = 'customer_state', ax =ax3, df = df_orders_filt, palette = 'OrRd')
+ax3.set_title('Totak Orders by state', size = 12, color = 'dimgrey')
+ax3.set_ylabel('State')
+ax3.set_xlabel('Order Volume')
 
 
 
