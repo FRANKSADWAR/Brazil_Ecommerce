@@ -1,3 +1,4 @@
+import folium.plugins
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -230,11 +231,9 @@ lats = list(df_order_items.query('order_purchase_year == 2018')['geolocation_lat
 longs = list(df_order_items.query('order_purchase_year == 2018')['geolocation_lng'].dropna().values)[:30000]
 locations = list(zip(lats, longs))
 
-map1 = folium
-
-
-
-
+map1 = folium.Map(location = [-15, 50], zoom_start = 4.0)
+folium.plugins.FastMarkerCluster(data = locations).add_to(map1)
+map1
 
 
 
