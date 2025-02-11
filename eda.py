@@ -189,4 +189,71 @@ df_regions_group.reset_index(drop = True, inplace= True)
 ### Group the data by city and get only the top 10 cities
 df_cities_group = df_orders_filt.groupby(by="geolocation_city", as_index= False).count().loc[:,['geolocation_city', 'order_id']]
 df_cities_group = df_cities_group.sort_values(by='order_id', ascending= False).reset_index(drop = True)
-#df_cities_group = df_cities_group.iloc[:10, :]
+df_cities_group = df_cities_group.iloc[:10, :]
+
+## Creating and preparing figure and axis
+fig = plt.figure(constrained_layout = True, figsize =(16,10))
+gs = GridSpec(2, 2, figure = fig)
+ax1 = fig.add_subplot(gs[0, 0]) ## occupy the first row and first column
+ax2 = fig.add_subplot(gs[1, 0]) ## occupy the second row and first column
+ax3 = fig.add_subplot(gs[:, 1]) ## occupy the whole row height in the first (1) position
+
+sns.lineplot(x='month', y = 'order_count', ax = ax1, data = df_regions_group, 
+            hue ='region',size = 'region', style='region', palette='magma', markers =['o'] * 5)
+
+format_spines(ax1, right_border=False)
+ax1.set_title('Evolution of e-commerce in the Brazillian States', size = 12, color = 'dimgrey')
+ax1.set_ylabel('Orders')
+
+## Top cities with high order volume
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
