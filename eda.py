@@ -8,6 +8,7 @@ import plotly.express as px
 import plotly.graph_objs as go
 import json
 from viz_utils import *
+import folium
 
 import requests
 from PIL import Image
@@ -224,10 +225,12 @@ ax3.set_ylabel('State')
 ax3.set_xlabel('Order Volume')
 
 
+## What about locations, spatial is special
+lats = list(df_order_items.query('order_purchase_year == 2018')['geolocation_lat'].dropna().values)[:30000]
+longs = list(df_order_items.query('order_purchase_year == 2018')['geolocation_lng'].dropna().values)[:30000]
+locations = list(zip(lats, longs))
 
-
-
-
+map1 = folium
 
 
 
