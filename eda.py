@@ -204,9 +204,18 @@ sns.lineplot(x='month', y = 'order_count', ax = ax1, data = df_regions_group,
 format_spines(ax1, right_border=False)
 ax1.set_title('Evolution of e-commerce in the Brazillian States', size = 12, color = 'dimgrey')
 ax1.set_ylabel('Orders')
+## Rotate the tick labels by 45 degrees
+for tick in ax1.get_xticklabels():
+    tick.set_rotation(45)
+
 
 ## Top cities with high order volume
-sns.barplot()
+sns.barplot(y='geolocation_city', x ='order_id', data = df_cities_group, ax = ax2, palette= ' YlGnBu')
+AnnotateBars(n_dec=0, font_size=10, color ='black').horizontal(ax2) ## annotate the bar chart and place the annotations in a horizontal orientation
+format_spines(ax2, right_border = False)
+ax2.set_title('Top 10 Brazillian Cities with ordr volumes')
+ax2.set_ylabel('Orders')
+ax2.set_xlabel('City')
 
 
 
