@@ -206,8 +206,7 @@ ax1.set_title('Evolution of e-commerce in the Brazillian States', size = 12, col
 ax1.set_ylabel('Orders')
 
 ## Top cities with high order volume
-
-
+sns.barplot()
 
 
 
