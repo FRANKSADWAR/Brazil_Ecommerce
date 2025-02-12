@@ -235,7 +235,7 @@ map1 = folium.Map(location = [-15, 50], zoom_start = 4.0)
 folium.plugins.FastMarkerCluster(data = locations).add_to(map1)
 map1
 
-
+plt.show()
 
 
 
