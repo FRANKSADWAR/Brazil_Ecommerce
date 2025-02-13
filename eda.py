@@ -10,7 +10,7 @@ import plotly.graph_objs as go
 import json
 from viz_utils import *
 import folium
-
+from folium.plugins import FastMarkerCluster, HeatMap
 import requests
 from PIL import Image
 
@@ -212,7 +212,7 @@ for tick in ax1.get_xticklabels():
 
 
 ## Top cities with high order volume
-sns.barplot(y='geolocation_city', x ='order_id', data = df_cities_group, ax = ax2, palette= ' YlGnBu')
+sns.barplot(y='geolocation_city', x ='order_id', data = df_cities_group, ax = ax2, palette= 'YlGnBu')
 AnnotateBars(n_dec=0, font_size=10, color ='black').horizontal(ax2) ## annotate the bar chart and place the annotations in a horizontal orientation
 format_spines(ax2, right_border = False)
 ax2.set_title('Top 10 Brazillian Cities with ordr volumes')
@@ -232,13 +232,14 @@ longs = list(df_order_items.query('order_purchase_year == 2018')['geolocation_ln
 locations = list(zip(lats, longs))
 
 map1 = folium.Map(location = [-15, 50], zoom_start = 4.0)
-folium.plugins.FastMarkerCluster(data = locations).add_to(map1)
+FastMarkerCluster(data = locations).add_to(map1)
 map1
 
-plt.show()
-
-
-
+## Heat maps
+map2 = folium.Map(location = [-15, -50], zoom_start = 4.0)
+heat_data = df_orders_filt.groupby(by=['geolocation_lat','geolocation_lng'], as_index=False).count().iloc[:, :3]
+HeatMap(name='Orders heat map', data = heat_data, radius = 10, max_zoom = 13).add_to(map2)
+map2
 
 
 
