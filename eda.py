@@ -278,9 +278,24 @@ df_month_aggreg['avg_price_per_order'] = df_month_aggreg['price'] / df_month_agg
 df_month_aggreg['avg_freight_per_order'] = df_month_aggreg['freight_value'] / df_month_aggreg['order_count']
 
 
+## Creating the fugure and the plots
+fig = plt.figure(constrained_layout = True, figsize = (16, 11))
 
+## Axis definition
+gs = GridSpec(2, 3, figure = fig)
+ax1 = fig.add_subplot(gs[0, :])
+ax2 = fig.add_subplot(gs[1,0])
+ax3 = fig.add_subplot(gs[1, 1:])
 
+## Comparison betwen order value and order counts in the platform
+sns.lineplot(x= 'order_purchase_year_month', y='price', ax = ax1, 
+                data = df_month_aggreg, linewidth = 2, 
+                color = 'darkslateblue', marker = '*', 
+                label='Order value vs order volume in the platform')
 
+ax1_twx = ax1.twinx()
+single_countplot(df_orders_filt, x = 'order_purchase_year_month', ax = ax1_twx, order=False, palette= 'YlGnBu_r')
+ax1_twx.set_yticks(np.arange(0, 20000, 2000))
 
 
 
