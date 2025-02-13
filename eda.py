@@ -265,7 +265,15 @@ HeatMapWithTime(name = 'Trends in e-commerce in space time',
                 index = list(time_index)).add_to(map3)
 
 
+## REVENUE FROM THE E-COMMERCE
+df_month_aggreg = df_orders_filt.groupby(by=['order_purchase_year','order_purchase_year_month'], as_index=False)
+df_month_aggreg = df_month_aggreg.agg({
+    'order_id': 'count',
+    'price':'sum',
+    'freight_value':'sum'
+})
 
+## Adding new other columns to the dataframe
 
 
 
