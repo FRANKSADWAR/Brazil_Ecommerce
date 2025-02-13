@@ -305,13 +305,13 @@ for x, y in df_month_aggreg.price.items():
     ax1.annotate(str(round(y/1000)) + 'K', xy = (x, y), textcoords='offset points', xytext = (0, 10), ha='center', color= 'dimgrey')
 
 ax1.annotate(f'Highest Value sold in the e-comerce', (10, 1000000), 
-                xytest = (-120, -20), 
+                xytext = (-120, -20), 
                 textcoords = 'offset points', 
                 bbox = dict(boxstyle="round4", fc="w", pad = 0.8),
                 arrowprops=dict(arrowstyle = '-|>', fc = "w"),
                 color = 'black', ha = 'center'
                 )
-ax1.set_title(' Trend in Revenue ($R) Generated from the e-commerce and the colume of order', size = 14, color= 'red', pad = 20)
+ax1.set_title(' Trend in Revenue ($R) Generated from the e-commerce and the Volume of orders', size = 14, color= 'red', pad = 20)
 
 
 
