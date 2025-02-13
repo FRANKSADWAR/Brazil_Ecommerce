@@ -253,8 +253,16 @@ for epoch in time_index:
     data_temp = data_temp.sort_values(by = ['order_id'], ascending=False).iloc[:, :3]
     epoch_list.append(data_temp.values.tolist())
 
-
-
+## Creating a map using Folium
+map3 = folium.Map(
+    location= [-15, -50],
+    zoom_start= 4.0,
+    tiles='cartodbdark_matter'
+)
+HeatMapWithTime(name = 'Trends in e-commerce in space time',
+                data = epoch_list, 
+                radius = 10, 
+                index = list(time_index)).add_to(map3)
 
 
 
