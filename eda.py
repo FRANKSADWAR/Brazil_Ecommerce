@@ -10,7 +10,7 @@ import plotly.graph_objs as go
 import json
 from viz_utils import *
 import folium
-from folium.plugins import FastMarkerCluster, HeatMap
+from folium.plugins import FastMarkerCluster, HeatMap, HeatMapWithTime
 import requests
 from PIL import Image
 
