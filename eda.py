@@ -241,10 +241,17 @@ heat_data = df_orders_filt.groupby(by=['geolocation_lat','geolocation_lng'], as_
 HeatMap(name='Orders heat map', data = heat_data, radius = 10, max_zoom = 13).add_to(map2)
 map2
 
+## Heat map with time to see the trends in e-commerce over time
+epoch_list = []
+heatmap_evl_data = df_orders_items[(df_orders_items['order_purchase_year_month'].astype(int) >= 201801)] ## Greater than January 2018
+heatmap_evl_data = heatmap_evl_data[(heatmap_evl_data['order_purchase_year_month'].astype(int) <= 201807 )] ## Less that July 2018
+time_index = heatmap_evl_data['order_purchase_year_month'].sort_values().unique()
 
-
-
-
+for epoch in time_index:
+    data_temp = heatmap_evl_data.query('order_purchase_year_month == @epoch')
+    data_temp = data_temp.groupby(by=['geolocation_lat', 'geolocation_lng'], as_index= False).count()
+    data_temp = data_temp.sort_values(by = ['order_id'], ascending=False).iloc[:, :3]
+    epoch_list.append(data_temp.values.tolist())
 
 
 
