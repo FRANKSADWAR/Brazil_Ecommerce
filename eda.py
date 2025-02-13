@@ -296,8 +296,22 @@ sns.lineplot(x= 'order_purchase_year_month', y='price', ax = ax1,
 ax1_twx = ax1.twinx()
 single_countplot(df_orders_filt, x = 'order_purchase_year_month', ax = ax1_twx, order=False, palette= 'YlGnBu_r')
 ax1_twx.set_yticks(np.arange(0, 20000, 2000))
+## Customize first sub-plot further
+format_spines(ax1)
+for tick in ax1.get_xticklabels():
+    tick.set_rotation(45)
 
+for x, y in df_month_aggreg.price.items():
+    ax1.annotate(str(round(y/1000)) + 'K', xy = (x, y), textcoords='offset points', xytext = (0, 10), ha='center', color= 'dimgrey')
 
+ax1.annotate(f'Highest Value sold in the e-comerce', (10, 1000000), 
+                xytest = (-120, -20), 
+                textcoords = 'offset points', 
+                bbox = dict(boxstyle="round4", fc="w", pad = 0.8),
+                arrowprops=dict(arrowstyle = '-|>', fc = "w"),
+                color = 'black', ha = 'center'
+                )
+ax1.set_title(' Trend in Revenue ($R) Generated from the e-commerce and the colume of order', size = 14, color= 'red', pad = 20)
 
 
 
