@@ -328,7 +328,12 @@ ax2.text(0.50, 0.60, 'total amount solf in 2017 \n between January and August', 
 ax2.text(0.50, 0.25, 'R$' + str(round(sold_2018/100000, 2)) + 'M', fontsize = 60, color = 'darkslateblue', ha='center')
 ax2.text(0.50, 0.25, 'Total amount sold in 2018 \n between January and August', fontsize = 10, ha = 'center')
 signal = '+' if growth > 0 else '-'
-
+ax2.text(0.50, 0.13, f'{signal}{str(round(100 * growth, 2))}%', 
+        fontsize=14, ha ='center', 
+        color = 'white',style='italic', weight ='bold',
+        bbox = dict(facecolor = 'navy', alpha = 0.5, pad = 10, boxstyle='round, pad = .7')
+        )
+ax2.axis('off')
 
 
 
