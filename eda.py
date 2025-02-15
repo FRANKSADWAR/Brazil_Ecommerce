@@ -337,12 +337,12 @@ ax2.axis('off')
 
 
 ## Trends in freight value paid by the customers
-sns.lineplot(x='order_purchase_year_month', y='freight_per_order', data = df_month_aggreg, linewidth = 2, color = 'silver', marker='o', ax =ax3)
+sns.lineplot(x='order_purchase_year_month', y='avg_freight_per_order', data = df_month_aggreg, linewidth = 2, color = 'silver', marker='o', ax =ax3)
 format_spines(ax3, right_border=False)
 for tick in ax3.get_xticklabels():
     tick.set_rotation(90)
-for x, y in df_month_aggreg.freight_per_order.items():
-    ax3.annotate(round(y,2), textcoords='offset points', xytext=(0, 10), ha='center', color = 'dimgrey')
+for x, y in df_month_aggreg.avg_freight_per_order.items():
+    ax3.annotate(round(y,2), xy = (x, y), textcoords='offset points', xytext=(0, 10), ha='center', color = 'dimgrey')
 ax3.set_title('Evolution of Average Freight Value (RS) Paid by customers', size = 14, color = 'dimgrey', pad = 20)
 plt.tight_layout()
 plt.show()
