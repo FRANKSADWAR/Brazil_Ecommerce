@@ -313,6 +313,82 @@ ax1.annotate(f'Highest Value sold in the e-comerce', (10, 1000000),
                 )
 ax1.set_title(' Trend in Revenue ($R) Generated from the e-commerce and the Volume of orders', size = 14, color= 'red', pad = 20)
 
+### Second row of the figure
+month_comparison = ['201701','201702','201703','201704','201705','201706','201707','201708',
+                    '201801','201802','201803','201804','201805','201806','201807','201808']
+
+df_sales_compare  = df_month_aggreg.query('order_purchase_year_month in (@month_comparison)')
+sold_2017 = df_sales_compare.query('order_purchase_year == 2017')['price'].sum()
+sold_2018 = df_sales_compare.query('order_purchase_year == 2018')['price'].sum()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
