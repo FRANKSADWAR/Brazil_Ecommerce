@@ -325,7 +325,7 @@ sold_2018 = df_sales_compare.query('order_purchase_year == 2018')['price'].sum()
 growth = 1 + (sold_2017/sold_2018)
 ax2.text(0.50, 0.73, 'R$' + str(round(sold_2017/100000,2)) + 'M', fontsize = 40, color = 'mediumseagreen', ha ='center')
 ax2.text(0.50, 0.60, 'total amount solf in 2017 \n between January and August', fontsize = 10, ha = 'center')
-ax2.text(0.50, 0.25, 'R$' + str(round(sold_2018/100000, 2)) + 'M', fontsize = 60, color = 'darkslateblue', ha='center')
+ax2.text(0.50, 0.36, 'R$' + str(round(sold_2018/100000, 2)) + 'M', fontsize = 60, color = 'darkslateblue', ha='center')
 ax2.text(0.50, 0.25, 'Total amount sold in 2018 \n between January and August', fontsize = 10, ha = 'center')
 signal = '+' if growth > 0 else '-'
 ax2.text(0.50, 0.13, f'{signal}{str(round(100 * growth, 2))}%', 
@@ -336,7 +336,16 @@ ax2.text(0.50, 0.13, f'{signal}{str(round(100 * growth, 2))}%',
 ax2.axis('off')
 
 
-
+## Trends in freight value paid by the customers
+sns.lineplot(x='order_purchase_year_month', y='freight_per_order', data = df_month_aggreg, linewidth = 2, color = 'silver', marker='o', ax =ax3)
+format_spines(ax3, right_border=False)
+for tick in ax3.get_xticklabels():
+    tick.set_rotation(90)
+for x, y in df_month_aggreg.freight_per_order.items():
+    ax3.annotate(round(y,2), textcoords='offset points', xytext=(0, 10), ha='center', color = 'dimgrey')
+ax3.set_title('Evolution of Average Freight Value (RS) Paid by customers', size = 14, color = 'dimgrey', pad = 20)
+plt.tight_layout()
+plt.show()
 
 
 
