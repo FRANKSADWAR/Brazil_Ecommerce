@@ -324,6 +324,9 @@ sold_2018 = df_sales_compare.query('order_purchase_year == 2018')['price'].sum()
 
 growth = 1 + (sold_2017/sold_2018)
 ax2.text(0.50, 0.73, 'R$' + str(round(sold_2017/100000,2)) + 'M', fontsize = 40, color = 'mediumseagreen', ha ='center')
+ax2.text(0.50, 0.60, 'total amount solf in 2017 \n between January and August', fontsize = 10, ha = 'center')
+ax2.text(0.50, 0.25, 'R$' + str(round(sold_2018/100000, 2)) + 'M', fontsize = 60, color = 'darkslateblue', ha='center')
+
 
 
 
