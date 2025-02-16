@@ -389,3 +389,23 @@ states_avg_grouped = df_orders_filt.groupby(by='customer_state', as_index=False)
 states_freight_paid = states_avg_grouped.loc[:, ['customer_state','freight_value']].sort_values(by='freight_value', ascending = False)
 states_time_to_delivery = df_orders_filt.groupby(by='customer_state', as_index=False)['time_to_delivery'].mean().sort_values(by='time_to_delivery', ascending=False)
 states_estimated_delivery = df_orders_filt.groupby(by='customer_state', as_index=False)['diff_estimated_delivery'].mean().sort_values(by='diff_estimated_delivery', ascending=False)
+
+fig, axs = plt.subplots(3,3, figsize = (15, 10))
+
+## Freight value paid grouped by the states
+sns.barplot(x='freight_value',y='customer_state', data=states_freight_paid.iloc[:10], ax = axs[1,0], palette='Blues_r')
+axs[1, 0].set_title('Top 10 states with the highest \n Average freight value', size = 12, color= 'black')
+sns.barplot(x='freight_value',y='customer_state', data = states_freight_paid.iloc[-10:], ax = axs[2,0], palette = 'Greens_r')
+axs[2,0].set_title('Top 10 states with lowest \n average freight value', size = 14, color = 'black')
+
+for ax in axs[1,0], axs[2,0]:
+    ax.set_xlabel('Mean freight height')
+    ax.set_xlim(0, states_freight_paid['freight_value'].max())
+    format_spines(ax, right_border=False)
+    ax.set_ylabel('')
+
+## Annotations
+axs[0,0].text(0.5, 0.3, f'R$ {round(df_orders_filt.freight_value.mean(),2)}', font_size=45, ha='center')
+axs[0,0].text(0.5, 0.12, 'is the mean value of freight paid', fontsize = 12, ha='center')
+axs[0,0].text(0.50, 0.00, 'for online shopping', fontsize = 12, ha='center')
+axs[0,0].axis('off')
