@@ -404,8 +404,13 @@ for ax in axs[1,0], axs[2,0]:
     format_spines(ax, right_border=False)
     ax.set_ylabel('')
 
-## Annotations
+# Annotations
 axs[0,0].text(0.5, 0.3, f'R$ {round(df_orders_filt.freight_value.mean(),2)}', font_size=45, ha='center')
 axs[0,0].text(0.5, 0.12, 'is the mean value of freight paid', fontsize = 12, ha='center')
 axs[0,0].text(0.50, 0.00, 'for online shopping', fontsize = 12, ha='center')
 axs[0,0].axis('off')
+
+### Delivery times to the states
+sns.barplot(x='time_to_delivery', y='customer_state', data = states_time_to_delivery.iloc[:10], ax=axs[1,1], palette = 'Blues_r')
+axs[1,1].set_title('Top 5 states with the highest \n Average Time to Deliver', size = 10, color ='black')
+sns.barplot(x='time_to_delivery', y='customer_state', data=states_time_to_delivery.iloc[-10:], ax = axs[2,1], palette = 'Blues_r')
