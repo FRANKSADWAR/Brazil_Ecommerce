@@ -348,17 +348,30 @@ plt.tight_layout()
 plt.show()
 
 
+## A look into the freight value paid by customers
 df_cities_aggreg = df_orders_filt.groupby(by=['nome'], as_index= False)
 df_cities_aggreg = df_cities_aggreg.agg({
     'order_id': 'count',
-    'price': 'sum',
-    'freight_value': 'mean'
+    'price': 'sum'
 })
 df_cities_aggreg['avg_price_per_order'] = df_cities_aggreg['price'] / df_cities_aggreg['order_id']
-df_cities_aggreg['avg_freight_value'] = df_cities_aggreg['freight_value'] / df_cities_aggreg['order_id']
+df_cities_aggreg['sum_freight_value'] = df_orders_filt.groupby('nome')['freight_value'].sum().to_numpy()
+df_cities_aggreg['avg_freight_value'] = df_cities_aggreg['sum_freight_value']/df_cities_aggreg['order_id']
 
-
-
+## The fresight value in the e-commerce platform
+fig = plt.figure(constrained_layout = True, figsize = (16,15))
+gs = GridSpec(2, 2, figure = fig)
+ax1 = fig.add_subplot(gs[0, 0])
+ax2 = fig.add_subplot(gs[0, 1])
+ax3 = fig.add_subplot(gs[1, 0])
+ax4 = fig.add_subplot(gs[1, 1])
+sns.barplot(x = 'price', y ='nome', data = df_cities_aggreg.sort_values(by='price',ascending = False), palette = 'OrRd_r', ax=ax1,)
+sns.barplot(x = 'avg_price_per_order', y = 'nome', data = df_cities_aggreg.sort_values(by='avg_price_per_order',ascending=False), palette = 'YlGnBu_r', ax=ax2)
+ax1.set_ylabel('City',)
+format_spines(ax1)
+format_spines(ax2)
+sns.barplot(x='sum_freight_value',y='nome', data=df_cities_aggreg.sort_values(by='price',ascending=False), ax=ax3, palette = 'Blues_r')
+sns.barplot(x='avg_freight_value', y='nome', data=df_cities_aggreg.sort_values(by='avg_freight_value', ascending=False), palette = 'Greens_r',ax=ax4)
 
 
 
