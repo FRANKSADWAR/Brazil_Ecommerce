@@ -377,3 +377,12 @@ for tick in ax3.get_xticklabels():
 ax3.set_title('Sum of freight value all over Brazil')
 
 
+## What about delivery times in the states ? Let's find out
+purchasing = pd.to_datetime(df_orders_filt['order_purchase_timestamp'])
+delivered = pd.ti_datetime(df_orders_filt['order_delivered_customer_date'])
+estimated = pd.to_datetime(df_orders_filt['order_estimated_delivery_date'])
+
+df_orders_filt['time_to_delivery'] =  (delivered - purchasing).dt.days
+df_orders_filt['diff_estimated_delivery'] = (delivered - estimated).dt.days
+
+states_avg_grouped = df_orders_filt.groupby(by='customer_state', as_index=False)['freight_value'].mean()
