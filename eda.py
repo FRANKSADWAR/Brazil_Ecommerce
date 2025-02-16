@@ -386,3 +386,7 @@ df_orders_filt['time_to_delivery'] =  (delivered - purchasing).dt.days
 df_orders_filt['diff_estimated_delivery'] = (delivered - estimated).dt.days
 
 states_avg_grouped = df_orders_filt.groupby(by='customer_state', as_index=False)['freight_value'].mean()
+states_freight_paid = states_avg_grouped.loc[:, ['customer_state','freight_value']].sort_values(by='freight_value', ascending = False)
+states_time_to_delivery = df_orders_filt.groupby(by='customer_state')['time_to_delivery'].mean().sort_values(by='time_to_delivery', ascending=False)
+states_estimated_delivery = df_orders_filt.groupby(by='customer_state')['diff_estimated_delivery'].mean().sort_values(by='diff_estimated_delivery', ascending = False)
+
