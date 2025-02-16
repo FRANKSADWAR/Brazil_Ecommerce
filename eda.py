@@ -412,5 +412,46 @@ axs[0,0].axis('off')
 
 ### Delivery times to the states
 sns.barplot(x='time_to_delivery', y='customer_state', data = states_time_to_delivery.iloc[:10], ax=axs[1,1], palette = 'Blues_r')
-axs[1,1].set_title('Top 5 states with the highest \n Average Time to Deliver', size = 10, color ='black')
+axs[1,1].set_title('Top 10 states with the highest \n Average Time to Deliver', size = 10, color ='black')
 sns.barplot(x='time_to_delivery', y='customer_state', data=states_time_to_delivery.iloc[-10:], ax = axs[2,1], palette = 'Blues_r')
+axs[2,1].set_title('Top 10 states with the lowest average time to deliver', size = 12, color='black')
+for ax in axs[1,1], axs[2,1]:
+    ax.set_xlabel('Time to Deliver')
+    ax.set_xlim(0, states_time_to_delivery['time_to_delivery'].max())
+    format_spines(ax, right_border = False)
+    ax.set_ylabel('')
+
+# annotate the delivery times
+axs[0,1].text(0.40, 0.30, f'{int(df_orders_filt.time_to_delivery.mean())}', fontsize=45, ha='center')
+axs[0,1].text(0.60, 0.30, 'working days', fontsize=12, ha='center')
+axs[0,1].text(0.50, 0.12, 'is the average delay for delivery', fontsize=12, ha='center')
+axs[0,1].text(0.50, 0.00, 'for online shopping', fontsize = 12, ha='center')
+axs[0,1].axis('off')
+
+## Plot the differences between delivery times and estimated dates
+sns.barplot(x='diff_estimated_delivery', y='customer_state', data=states_estimated_delivery.iloc[10:], ax=axs[1,2], palette='Blues_r')
+axs[1,2].set_title('Top 10 states where delivery is \n realy fast compared to estimates', size = 12, color='black')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
