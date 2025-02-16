@@ -372,69 +372,8 @@ format_spines(ax1)
 format_spines(ax2)
 sns.barplot(x='sum_freight_value',y='nome', data=df_cities_aggreg.sort_values(by='price',ascending=False), ax=ax3, palette = 'Blues_r')
 sns.barplot(x='avg_freight_value', y='nome', data=df_cities_aggreg.sort_values(by='avg_freight_value', ascending=False), palette = 'Greens_r',ax=ax4)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+for tick in ax3.get_xticklabels():
+    tick.set_rotation(45)
+ax3.set_title('Sum of freight value all over Brazil')
 
 
