@@ -348,7 +348,14 @@ plt.tight_layout()
 plt.show()
 
 
-
+df_cities_aggreg = df_orders_filt.groupby(by=['nome'], as_index= False)
+df_cities_aggreg = df_cities_aggreg.agg({
+    'order_id': 'count',
+    'price': 'sum',
+    'freight_value': 'mean'
+})
+df_cities_aggreg['avg_price_per_order'] = df_cities_aggreg['price'] / df_cities_aggreg['order_id']
+df_cities_aggreg['avg_freight_value'] = df_cities_aggreg['freight_value'] / df_cities_aggreg['order_id']
 
 
 
