@@ -89,24 +89,40 @@ def make_autopct(values):
 # Função para plotagem de gráfico de rosca em relação a uma variávei específica do dataset
 def donut_plot(df, col, ax, label_names=None, text='', colors=['crimson', 'navy'], circle_radius=0.8,
             title=f'Gráfico de Rosca', flag_ruido=0):
+    """
+    Creates a donut plot using the specified DataFrame column.
 
+    Parameters:
+        df (pd.DataFrame): The DataFrame containing the data to plot.
+        col (str): The column name in the DataFrame to plot.
+        ax (matplotlib.axes.Axes): The axes on which to plot the donut chart.
+        label_names (list, optional): Custom labels for the chart. Defaults to None.
+        text (str, optional): Text to display in the center of the donut. Defaults to ''.
+        colors (list, optional): Colors for the chart segments. Defaults to ['crimson', 'navy'].
+        circle_radius (float, optional): Radius of the inner white circle. Defaults to 0.8.
+        title (str, optional): Title of the plot. Defaults to 'Gráfico de Rosca'.
+        flag_ruido (int, optional): Number of categories to suppress from the analysis. Defaults to 0.
 
-    # Retorno dos valores e definição da figura
+    Returns:
+        None
+    """
+
+    # return values and definition of the figure
     values = df[col].value_counts().values
     if label_names is None:
         label_names = df[col].value_counts().index
 
-    # Verificando parâmetro de supressão de alguma categoria da análise
+    # Checking the supression parameter
     if flag_ruido > 0:
         values = values[:-flag_ruido]
         label_names = label_names[:-flag_ruido]
 
-    # Plotando gráfico de rosca
+    # Plot the donut chart by adding a white circle at the center and a pie chart all around
     center_circle = plt.Circle((0, 0), circle_radius, color='white')
     ax.pie(values, labels=label_names, colors=colors, autopct=make_autopct(values))
     ax.add_artist(center_circle)
 
-    # Configurando argumentos do texto central
+    # Configuring the core text of the donut plot
     kwargs = dict(size=20, fontweight='bold', va='center')
     ax.text(0, 0, text, ha='center', **kwargs)
     ax.set_title(title, size=14, color='dimgrey')

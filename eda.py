@@ -458,8 +458,10 @@ ax1 = fig.add_subplot(gs[0, 0])
 ax2 = fig.add_subplot(gs[0, 1])
 ax3 = fig.add_subplot(gs[1, :])
 
-# first plot on the figure
-
+# first plot on the figure --> payment types
+colors = ['darkslateblue','conrflowerblue', 'silver','darkviolet','crimson']
+label_names = df_orders_pay['payment_type'].value_counts().index
+donut_plot(df_orders_pay, col = 'payment_type', ax=ax1, label_names)
 
 
 
