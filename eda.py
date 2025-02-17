@@ -473,7 +473,12 @@ ax2.set_title('A distribution of payment installments in the e-commerce platform
 payment_trends = df_orders_pay.groupby(by=['order_purchase_year_month','payment_type'], as_index=False).count()
 payment_trends = payment_trends.loc[:, ['order_purchase_year_month','payment_type','order_id']]
 payment_trends = payment_trends.sort_values(by=['order_purchase_year_month','order_id'], ascending = [True, False])
-sns.lineplot(x='order_purchase_year_month', y='order_id', data = payment_trends, ax = ax3, hue = 'payment_type', style = 'payment_type')
+sns.lineplot(x='order_purchase_year_month', y='order_id', data = payment_trends, ax = ax3, hue = 'payment_type', style = 'payment_type', size = 'payment_type',palette = colors, marker='o')
+format_spines(ax3, right_border= False)
+ax3.set_title('Trends in payment types usage for e-commerce payments')
+for ax in ax3.get_xticklabels():
+    ax.set_rotation(45)
+
 
 
 
