@@ -440,7 +440,13 @@ for ax in axs[1,2], axs[2,2]:
     ax.set_ylabel('')
 
 ## Annotations
-axs[]
+axs[0,2].text(0.40, 0.30, f'{int(df_orders_filt.diff_estimated_delivery.mean())}', fontsize=45, ha='center')
+axs[0,2].text(0.60, 0.30, 'working days', fontsize=12, ha='center')
+axs[0,2].text(0.50, 0.12, 'is the average difference between', fontsize=12, ha='center')
+axs[0,2].text(0.50, 0.00, 'delivery and estimated date', fontsize=12, ha='center')
+plt.suptitle('Actual and estimated delivery times across states', size=16)
+plt.tight_layout()
+plt.show()
 
 
 
