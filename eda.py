@@ -449,7 +449,16 @@ plt.tight_layout()
 plt.show()
 
 ## Payments EDA --> How are orders paid for, where do these payment come from
+df_orders_pay = df_orders_filt.merge(olist_order_payments, how = 'left', on ='order_id')
+## create the figure
+fig = plt.figure(constrained_layout = True, figsize = (16, 12))
+## Create the grids
+gs = GridSpec(2, 2, figure = fig)
+ax1 = fig.add_subplot(gs[0, 0])
+ax2 = fig.add_subplot(gs[0, 1])
+ax3 = fig.add_subplot(gs[1, :])
 
+# first plot on the figure
 
 
 
