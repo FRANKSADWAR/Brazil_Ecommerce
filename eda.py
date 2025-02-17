@@ -435,7 +435,7 @@ sns.barplot(x='diff_estimated_delivery', y='customer_state',data = states_estima
 axs[2,2].set_title('Top 5 states with slow delivery as compared to estimates', size=12, color='black')
 for ax in axs[1,2], axs[2,2]:
     ax.set_xlabel('Days between delivery and Estimated')
-    ax.set_xlim(states_time_to_delivery['diff_estimated_delivery'].min()-1, states_time_to_delivery['diff_estimated_delivery'].max()+1)
+    ax.set_xlim(states_estimated_delivery['diff_estimated_delivery'].min()-1, states_estimated_delivery['diff_estimated_delivery'].max()+1)
     format_spines(ax, right_border=False)
     ax.set_ylabel('')
 
