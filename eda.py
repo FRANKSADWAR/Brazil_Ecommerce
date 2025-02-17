@@ -461,7 +461,13 @@ ax3 = fig.add_subplot(gs[1, :])
 # first plot on the figure --> payment types
 colors = ['darkslateblue','conrflowerblue', 'silver','darkviolet','crimson']
 label_names = df_orders_pay['payment_type'].value_counts().index
-donut_plot(df_orders_pay, col = 'payment_type', ax=ax1, label_names)
+donut_plot(df_orders_pay, col = 'payment_type', ax=ax1, 
+           label_names=label_names, colors = colors, title='Count of Transactions by payment type', 
+           text = f'{len(df_orders_pay)}\n payments \n registered')
+
+## second plot --> Payment installments
+single_countplot(df_orders_pay, ax = ax2, y = 'payment_installments')
+ax2.set_title('A distribution of payment installments in the e-commerce platform')
 
 
 
