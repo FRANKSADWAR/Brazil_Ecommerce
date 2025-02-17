@@ -480,23 +480,3 @@ for ax in ax3.get_xticklabels():
     ax.set_rotation(45)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
