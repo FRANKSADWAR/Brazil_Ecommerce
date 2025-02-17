@@ -449,32 +449,8 @@ plt.tight_layout()
 plt.show()
 
 ## Payments EDA --> How are orders paid for, where do these payment come from
-df_orders_pay = df_orders_filt.merge(olist_order_payments, how='left', on='order_id')
-fig = plt.figure(constrained_layout = True, figsize=(16, 11))
 
-gs = GridSpec(2,2, figure=fig)
-#Axis definition
-ax1 = fig.add_subplot(gs[0 ,0])
-ax2 = fig.add_subplot(gs[0, 1])
-ax3 = fig.add_subplot(gs[1, :])
 
-## Plot 1 - Payment types in a donut chart 
-colors = ['darkslateblue','cornflowerblue','silver','darkviolet','crimson']
-label_names = df_orders_pay['payment_type'].value_counts().index
-donut_plot(df_orders_pay, col='payment_type', ax=ax1, label_names=label_names, colors=colors, title='Count of Transactions by payment type', text =f'{len(df_orders_pay)}\n payments \n registered')
-
-## Plot 2 - Payment installments
-single_countplot(df_orders_pay, ax =ax2, y = 'payment installments')
-ax2.set_title('A Distribution of Payment Installments', color = 'dimgrey', size = 12)
-
-## Plot 3 - Trends in payment types used in e-commerce
-payment_trends = df_orders_pay.group(by=['order_purchase_year_month','payment_type'], as_index = False).count()
-payment_trends = payment_trends.loc[:, ['order_purchase_year_month','payment_type','order_id']]
-payment_trends = payment_trends.sort_values(by=['order_purchase_year_month','order_id'], ascending = [True, False])
-sns.lineplot(x = 'order_purchase_year_month',  y = 'order_id', data = payment_trends, ax = ax3, hue = 'payment_type', style='payment_type', size = 'payment_type', palette = colors, marker = 'o')
-format_spines(ax3, right_border= False)
-ax3.set_title('Trends of payment types in Brazilian E-commerce', size = 12, color = 'dimgrey')
-plt.show()
 
 
 
