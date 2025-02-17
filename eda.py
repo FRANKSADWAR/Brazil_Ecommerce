@@ -431,7 +431,10 @@ axs[0,1].axis('off')
 ## Plot the differences between delivery times and estimated dates
 sns.barplot(x='diff_estimated_delivery', y='customer_state', data=states_estimated_delivery.iloc[10:], ax=axs[1,2], palette='Blues_r')
 axs[1,2].set_title('Top 10 states where delivery is \n realy fast compared to estimates', size = 12, color='black')
-
+sns.barplot(x='diff_estimated_delivery', y='customer_state',data = states_estimated_delivery.iloc[-10:], ax=axs[2,2], palette='Greens_r')
+axs[2,2].set_title('Top 5 states with slow delivery as compared to estimates', size=12, color='black')
+for ax in axs[1,2], axs[2,2]:
+    
 
 
 
