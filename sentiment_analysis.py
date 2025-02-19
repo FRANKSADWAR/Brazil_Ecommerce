@@ -8,4 +8,3 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
 
-count = CountVectorizer()
