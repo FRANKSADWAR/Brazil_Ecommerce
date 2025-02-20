@@ -46,6 +46,11 @@ def print_step_result(text_list_before, text_list_after, idx_list):
 def re_breakline(text_list):
     """
     text_list: a list of strings where each sting may contain newline (\n) or carriage return (\r) characters
+        Define a regex pattern to match newline and carriage return characters
+        Iterate over each string in the input list
+        Replace occurances of the pattern in each string with a space
+        Return the modified list of strings
+
     """
     pattern = '[\n\r]'
     return [re.sub(pattern, ' ',r) for r in text_list]
