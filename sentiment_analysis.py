@@ -42,3 +42,10 @@ def print_step_result(text_list_before, text_list_after, idx_list):
         print(f'Before: \n {text_list_before[idx]}\n')
         print(f'After -- \n {text_list_after}\n')
         i += 1
+
+def re_breakline(text_list):
+    """
+    text_list: a list of strings where each sting may contain newline (\n) or carriage return (\r) characters
+    """
+    pattern = '[\n\r]'
+    return [re.sub(pattern, ' ',r) for r in text_list]
