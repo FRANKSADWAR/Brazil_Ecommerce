@@ -15,3 +15,30 @@ df_reviews = olist_order_reviews.loc[:,['review_score','review_comment_message']
 df_comments = df_reviews.dropna(subset=['review_comment_message'])
 df_comments = df_comments.reset_index(drop = True)
 df_comments.columns = ['score','comment']
+
+
+
+def find_patterns(re_pattern, text_list):
+    p = re.compile(re_pattern)
+    position_dict = {}
+    i = 0
+    for c in text_list:
+        match_list = []
+        iterator = p.finditer(c)
+        for match in iterator:
+            match_list.append(match.span())
+        control_key = f'Text idx {i}'
+        if len(match_list) == 0:
+            pass
+        else:
+            position_dict[control_key] = match_list
+        i += 1
+    return position_dict
+
+def print_step_result(text_list_before, text_list_after, idx_list):
+    i = 1
+    for idx in idx_list:
+        print(f'---Text {i} ---\n')
+        print(f'Before: \n {text_list_before[idx]}\n')
+        print(f'After -- \n {text_list_after}\n')
+        i += 1
