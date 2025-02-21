@@ -90,5 +90,5 @@ def re_dates(text_list:List[str]) -> List[str]:
     Args:
         text_list (List[str]) : List of strings where each string may contain date objects
     Returns:
-        
+        List[str] : a list object where the date object has been replaced by the word 'data'
     """
