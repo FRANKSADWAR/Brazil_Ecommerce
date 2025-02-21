@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from typing import List, Dict
 
 import re
 from nltk.corpus import stopwords
@@ -43,7 +44,7 @@ def print_step_result(text_list_before, text_list_after, idx_list):
         print(f'After -- \n {text_list_after}\n')
         i += 1
 
-def re_breakline(text_list):
+def replace_breakline(text_list):
     """
     text_list: a list of strings where each string may contain newline (\n) or carriage return (\r) characters
         Define a regex pattern to match newline and carriage return characters
@@ -56,8 +57,11 @@ def re_breakline(text_list):
     return [re.sub(pattern, ' ',r) for r in text_list]
 
 
-def re_hyperlinks(text_list):
+def replace_hyperlinks(text_list : List[str]) -> List[str]:
     """
-    text_list: 
+    text_list: List of strings where each string may contain hyperlinks
     """
+    pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
+    return [re.sub(pattern, ' link ', r) for r in text_list]
+
     
