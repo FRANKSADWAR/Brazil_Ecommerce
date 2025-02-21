@@ -85,4 +85,10 @@ def replace_hyperlinks(text_list : List[str]) -> List[str]:
     pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
     return [re.sub(pattern, ' link ', r) for r in text_list]
 
-    
+def re_dates(text_list:List[str]) -> List[str]:
+    """
+    Args:
+        text_list (List[str]) : List of strings where each string may contain date objects
+    Returns:
+        
+    """
