@@ -59,7 +59,11 @@ def replace_breakline(text_list):
 
 def replace_hyperlinks(text_list : List[str]) -> List[str]:
     """
-    text_list: List of strings where each string may contain hyperlinks
+    Replaces hyperlinks in a list of strings with the word 'link'
+    Args:
+        text_list (List[str]): List of strings where each string may contain hyperlinks
+    Returns:
+        List[str] : A list of strings with hyperlinks replaced by the word 'link'
     """
     pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
     return [re.sub(pattern, ' link ', r) for r in text_list]
