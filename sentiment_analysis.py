@@ -64,6 +64,23 @@ def replace_hyperlinks(text_list : List[str]) -> List[str]:
         text_list (List[str]): List of strings where each string may contain hyperlinks
     Returns:
         List[str] : A list of strings with hyperlinks replaced by the word 'link'
+    Lets breakdown the regrex expression:
+    http[s]?:// which could be replaced by (?:http|https|ftp|sftp)://
+        http: matches the literal text "http"
+        [s]? : matches an optional "s" making it work for both https:// and http://
+        :// matches literal characters "://" which usually appear in a valid URL
+    (?:) is a non-capturing group, meaning it groups elements together without storing them for back-referencing
+    [a-zA-Z]|[0-9]|[$-_@#.&+]: [a-zA-Z] matches any letter, lowercase or uppercase
+                                [0-9]   matches any digit between 0 to 9
+                                [$-_@#.&+] matches common special characters found in URLs
+
+    [!*\(\),] matches more allowed special characters found in URLs
+    (?:%[0-9a-fA-F][0-9a-fA-F]): (?:) the non-capturing group
+                                 % matches a percentage sign
+                                 [0-9a-fA-F] matches a hexadecimal digit
+                                 [0-9a-FA-F] matches another hexadecimal digit
+    + any or all of the above patterns, the + quantifier at the end ensures that the URL must contain at least one or more of 
+            the allowed characters, meaning http:// or https:// alone will not match, there must be additional characters
     """
     pattern = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
     return [re.sub(pattern, ' link ', r) for r in text_list]
