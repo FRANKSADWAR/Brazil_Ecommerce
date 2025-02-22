@@ -110,8 +110,8 @@ def re_dates(text_list:List[str]) -> List[str]:
                             {2,4} specifies that the year can be 2 to 4 digits long (e.g 23 for 2023 or 2023)
     """
     pattern_dd_mm_yyyy = '([0-2][0-9]|(3)[0-1])(\/|\.|-)(((0)[0-9])|((1)[0-2]))(\/|\.|-)\d{2,4}'
-    pattern_yyyy_mm_dd = '\d{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])'
-    pattern_mm_dd_yyyy = '(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}'
+    pattern_yyyy_mm_dd = r'\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+    pattern_mm_dd_yyyy = r'(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}'
     
     def match_date(date_obj):
         if re.match(pattern_dd_mm_yyyy, date_obj):
@@ -122,8 +122,17 @@ def re_dates(text_list:List[str]) -> List[str]:
             return re.sub(pattern_mm_dd_yyyy, ' data ', date_obj)
         else:
             return date_obj
-    
     return [match_date(text) for text in text_list]
+
+
+def re_money(text_list):
+    pattern = '[R]{0,1}\$[ ]{0,}\d+(,|\.)\d+'
+    return [re.sub(pattern, ' dinheiro ',r) for r in text_list]
+
+def re_numbers(text_list):
+    pattern = '[0-9]'
+    return [re.sub(pattern, ' numero ', r) for r in text_list]
+
 
 if __name__ == "__main__":
     date_list = [
