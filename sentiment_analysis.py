@@ -91,4 +91,12 @@ def re_dates(text_list:List[str]) -> List[str]:
         text_list (List[str]) : List of strings where each string may contain date objects
     Returns:
         List[str] : a list object where the date object has been replaced by the word 'data'
+    This pattern is designed to match dates in the format DD/MM/YYYY, DD.MM.YYYY or DD.MM.YY, let's break down the patterns
+    ([0-2][0-9]|(3)[0-1]): This part matches the day of the month
+                            [0-2][0-9]: Matches days from 00 to 29
+                            (3)[0-1]: Matches days 30 and 31
+                            The | is an OR operator, meaning it will match either the first part (00-29) or the second part (30-31)
     """
+    pattern = '([0-2][0-9]|(3)[0-1])(\/|\.)(((0)[0-9])|((1)[0-2]))(\/|\.)\d{2,4}'
+    return [re.sub(pattern, ' data ', r) for r in text_list]
+    
