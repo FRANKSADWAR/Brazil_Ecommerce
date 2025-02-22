@@ -109,9 +109,9 @@ def re_dates(text_list:List[str]) -> List[str]:
                             \d matches any digit/integer (0-9)
                             {2,4} specifies that the year can be 2 to 4 digits long (e.g 23 for 2023 or 2023)
     """
-    pattern_dd_mm_yyyy = r'([0-2][0-9]|(3)[0-1])(\/|\.|-)(((0)[0-9])|((1)[0-2]))(\/|\.)\d{2,4}'
-    pattern_yyyy_mm_dd = r'\d{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])'
-    pattern_mm_dd_yyyy = r'(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}'
+    pattern_dd_mm_yyyy = '([0-2][0-9]|(3)[0-1])(\/|\.|-)(((0)[0-9])|((1)[0-2]))(\/|\.|-)\d{2,4}'
+    pattern_yyyy_mm_dd = '\d{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])'
+    pattern_mm_dd_yyyy = '(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}'
     
     def match_date(date_obj):
         if re.match(pattern_dd_mm_yyyy, date_obj):
@@ -127,9 +127,9 @@ def re_dates(text_list:List[str]) -> List[str]:
 
 if __name__ == "__main__":
     date_list = [
-        "Today's date is 31/12/2023.",
-        "The event is on 2023-01-01.",
-        "The deadline of the assignment is on 12/31.2025.",
+        "Today date is 31/12/2023",
+        "The event is on 2023-01-01",
+        "The deadline of the assignment is on 12/31/2025",
         "No dates were provided for the trip"
     ]
     links = ["https://erp.agribora.com","Homer was a great movie"]
