@@ -134,6 +134,20 @@ def re_numbers(text_list):
     return [re.sub(pattern, ' numero ', r) for r in text_list]
 
 
+def re_negation(text_list):
+    pattern = '([nN][ãÃaA][oO]|[ñÑ]| [nN] )'
+    return [re.sub(pattern, ' negação ', r) for r in text_list]
+
+def re_special_characters(text_list):
+    pattern = '\W'
+    return [re.sub(pattern, ' ', r) for r in text_list]
+
+def re_whitespaces(text_list):
+    white_spaces = [re.sub('\s+',' ',r) for r in text_list]
+    white_space_removed = [re.sub('[ \t]+$',' ',r) for r in white_spaces]
+    return white_space_removed
+
+
 if __name__ == "__main__":
     date_list = [
         "Today date is 31/12/2023",
