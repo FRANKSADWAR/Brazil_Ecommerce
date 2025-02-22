@@ -111,7 +111,7 @@ def re_dates(text_list:List[str]) -> List[str]:
     """
     pattern_dd_mm_yyyy = r'([0-2][0-9]|(3)[0-1])(\/|\.|-)(((0)[0-9])|((1)[0-2]))(\/|\.)\d{2,4}'
     pattern_yyyy_mm_dd = r'\d{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[0-1])'
-    pattern_mm_dd_yyyy = re.compile(r'(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}')
+    pattern_mm_dd_yyyy = r'(0[1-9]|1[0-2])\/([0-2][0-9]|3[0-1])\/\d{4}'
     
     def match_date(date_obj):
         if re.match(pattern_dd_mm_yyyy, date_obj):
