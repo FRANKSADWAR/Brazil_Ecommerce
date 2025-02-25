@@ -9,7 +9,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer, RSLPStemmer
+from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
 
 path = "data/"
 olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
@@ -150,7 +150,18 @@ def re_whitespaces(text_list):
     return white_space_removed
 
 
+def stopwords_removal(text, cached_stopwords = stopwords.words('portuguese')):
+    return [c.lower() for c in text.split() if c.lower() not in cached_stopwords]
 
+
+def stemming_process(text, stemmer = RSLPStemmer()):
+    return [stemmer.stem(c) for c in text.split()]
+
+
+#### Feature Extraction : CountVectorizer, TF-IDF
+def extract_features_from_corpus(corpus, vectorizer, df =False):
+    corpus_features = vectorizer.fit_transform(corpus).toarray()
+    
 
 
 if __name__ == "__main__":
