@@ -8,6 +8,8 @@ import re
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer, RSLPStemmer
 
 path = "data/"
 olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
@@ -146,6 +148,9 @@ def re_whitespaces(text_list):
     white_spaces = [re.sub('\s+',' ',r) for r in text_list]
     white_space_removed = [re.sub('[ \t]+$',' ',r) for r in white_spaces]
     return white_space_removed
+
+
+
 
 
 if __name__ == "__main__":
