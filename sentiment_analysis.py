@@ -161,8 +161,13 @@ def stemming_process(text, stemmer = RSLPStemmer()):
 #### Feature Extraction : CountVectorizer, TF-IDF
 def extract_features_from_corpus(corpus, vectorizer, df =False):
     corpus_features = vectorizer.fit_transform(corpus).toarray()
-    
-
+    feature_names = vectorizer.get_feature_names()
+    df_corpus_features = None
+    if df:
+        df_corpus_features = pd.DataFrame(corpus_features, columns=feature_names)
+    else:
+        df_corpus_features
+    return corpus_features, df_corpus_features
 
 if __name__ == "__main__":
     date_list = [
