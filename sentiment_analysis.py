@@ -128,20 +128,20 @@ def re_dates(text_list:List[str]) -> List[str]:
 
 
 def re_money(text_list):
-    pattern = '[R]{0,1}\$[ ]{0,}\d+(,|\.)\d+'
+    pattern = re.compile(r'[R]{0,1}\$[ ]{0,}\d+(,|\.)\d+')
     return [re.sub(pattern, ' dinheiro ',r) for r in text_list]
 
 def re_numbers(text_list):
-    pattern = '[0-9]'
+    pattern = re.compile('[0-9]')
     return [re.sub(pattern, ' numero ', r) for r in text_list]
 
 
 def re_negation(text_list):
-    pattern = '([nN][ãÃaA][oO]|[ñÑ]| [nN] )'
+    pattern = re.compile(r'([nN][ãÃaA][oO]|[ñÑ]| [nN] )')
     return [re.sub(pattern, ' negação ', r) for r in text_list]
 
 def re_special_characters(text_list):
-    pattern = '\W'
+    pattern = re.compile(r'\W')
     return [re.sub(pattern, ' ', r) for r in text_list]
 
 def re_whitespaces(text_list):
@@ -168,6 +168,10 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
     else:
         df_corpus_features
     return corpus_features, df_corpus_features
+
+
+
+
 
 if __name__ == "__main__":
     date_list = [
