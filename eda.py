@@ -26,7 +26,7 @@ olist_sellers = pd.read_csv(path+'olist_sellers_dataset.csv')
 
 ## An overview of the dataset
 datasets = [olist_customer, olist_geolocation, olist_orders, olist_order_items, 
-            olist_order_payments, olist_order_reviews, olist_products, olist_sellers]
+            olist_order_payments, olist_products, olist_sellers]
 
 names = ['olist_customer','olist_geolocation','olist_orders', 'olist_orders','olist_order_items','olist_order_payments',
         'olist_order_reviews','olist_products','olist_seller']

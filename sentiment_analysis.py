@@ -3,6 +3,7 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from typing import List, Dict
+import nltk
 
 import re
 from nltk.corpus import stopwords
@@ -10,6 +11,7 @@ from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
+nltk.download('stopwords')
 
 path = "data/"
 olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
