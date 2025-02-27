@@ -23,7 +23,6 @@ def re_breakline(text_list, text_sub=' '):
 
     return [re.sub('[\n\r]', text_sub, r) for r in text_list]
 
-
 # [RegEx] Padrão para encontrar sites ou hiperlinks
 def re_hiperlinks(text_list, text_sub=' link '):
     """
