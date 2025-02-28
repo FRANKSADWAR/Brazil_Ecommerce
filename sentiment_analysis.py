@@ -49,7 +49,7 @@ def print_step_result(text_list_before, text_list_after, idx_list):
         print(f'After -- \n {text_list_after}\n')
         i += 1
 
-def replace_breakline(text_list):
+def replace_breakline(text_list : List):
     """
     text_list: a list of strings where each string may contain newline (\n) or carriage return (\r) characters
         Define a regex pattern to match newline and carriage return characters
@@ -175,4 +175,17 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
 
 if __name__ == "__main__":
     reviews = list(df_comments['comment'].values)
-    print(reviews[:10])
+    reviews_breakline = replace_breakline(reviews)
+    reviews_hyperlinks = replace_hyperlinks(reviews_breakline)
+    df_comments['re_hyperlinks'] = reviews_hyperlinks
+
+    reviews_dates = re_dates(reviews_hyperlinks)
+    df_comments['re_dates'] = reviews_dates
+
+    reviews_money = re_money(reviews_dates)
+    df_comments['re_money'] = reviews_money
+
+    reviews_numbers = re_numbers(reviews_money)
+    df_comments['re_numbers'] = reviews_numbers
+
+    
