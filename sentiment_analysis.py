@@ -7,7 +7,7 @@ import nltk
 
 import re
 from nltk.corpus import stopwords
-from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
@@ -207,6 +207,13 @@ if __name__ == "__main__":
     reviews_stemmer = [' '.join(stemming_process(review)) for review in reviews_stopwords]
     df_comments['stemming'] = reviews_stemmer
 
-    
+    ### Creating a count vectorizer
+    count_vectorizer = CountVectorizer(max_features = 300, min_df =7, max_df = 0.8, stop_words=pt_stopwords)
+    count_features, df_count_features = extract_features_from_corpus(reviews_stemmer, count_vectorizer, df = True)
+    print(f'Shape of the count vectorizer feature matrix: {count_features.shape} \n')
 
-
+    ### Creating a TF-IDF Vectorizer
+    tfidf_vectorizer = TfidfVectorizer(max_features = 300, min_df = 7, max_df=0.8, stop_words=pt_stopwords)
+    ## extractng features for the corpus
+    tfidf_features, df_tfidf_features = extract_features_from_corpus(reviews_stemmer, tfidf_vectorizer, df=True)
+    print(f'Shape of the TF-IDF feature matrix : {tfidf_features.shape}')
