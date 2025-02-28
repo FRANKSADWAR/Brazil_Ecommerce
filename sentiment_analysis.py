@@ -188,4 +188,25 @@ if __name__ == "__main__":
     reviews_numbers = re_numbers(reviews_money)
     df_comments['re_numbers'] = reviews_numbers
 
+    reviews_negation = re_negation(reviews_numbers)
+    df_comments['re_negation'] = reviews_negation
+
+    reviews_special_characters = re_special_characters(reviews_negation)
+    df_comments['re_special_chars'] = reviews_special_characters
+
+    reviews_whitespaces = re_whitespaces(reviews_special_characters)
+    df_comments['re_whitespaces'] = reviews_whitespaces
+
+    pt_stopwords = stopwords.words('portuguese')
+    print(f'Total number of Portuguese stop words in ntlk.corpus module : {len(pt_stopwords)}')
+    print(pt_stopwords[:10])
+
+    reviews_stopwords = [' '.join(stopwords_removal(review)) for review in reviews_whitespaces]
+    df_comments['stopwords_removed'] = reviews_stopwords
+
+    reviews_stemmer = [' '.join(stemming_process(review)) for review in reviews_stopwords]
+    df_comments['stemming'] = reviews_stemmer
+
     
+
+
