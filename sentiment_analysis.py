@@ -12,6 +12,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
 nltk.download('stopwords')
+nltk.download('rslp')
 
 path = "data/"
 olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
@@ -175,4 +176,3 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
 if __name__ == "__main__":
     reviews = list(df_comments['comment'].values)
     print(reviews[:10])
-    
