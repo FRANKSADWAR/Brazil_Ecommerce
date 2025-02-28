@@ -172,19 +172,7 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
     return corpus_features, df_corpus_features
 
 
-
-
-
 if __name__ == "__main__":
-    date_list = [
-        "Today date is 31/12/2023",
-        "The event is on 2023-01-01",
-        "The deadline of the assignment is on 12/31/2025",
-        "No dates were provided for the trip"
-    ]
-    links = ["https://erp.agribora.com","Homer was a great movie"]
-    link_res = replace_hyperlinks(links)
-
-    results = re_dates(date_list)
-    print(results)
-    print(link_res)
+    reviews = list(df_comments['comment'].values)
+    print(reviews[:10])
+    
