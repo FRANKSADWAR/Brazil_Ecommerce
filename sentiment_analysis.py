@@ -132,14 +132,31 @@ def re_dates(text_list:List[str]) -> List[str]:
 
 def re_money(text_list):
     """
+    Replaces occurrences of Brazilian currency patterns in a list of strings with the word 'dinheiro'.
+
     Args:
-    text_list (List): a list containing strings, where each string may contain Brazillian currency
+        text_list (List): A list of strings, each potentially containing Brazilian currency.
+
+    Returns:
+        List: A list of strings with currency patterns replaced by 'dinheiro'.
     """
+    if not text_list:
+        return []
     pattern = re.compile(r'[R]{0,1}\$[ ]{0,}\d+(,|\.)\d+')
     return [re.sub(pattern, ' dinheiro ',r) for r in text_list]
 
+
 def re_numbers(text_list):
-    pattern = re.compile('[0-9]')
+    """
+    Replaces all numeric characters in each string of the input list with the word 'numero'.
+
+    Args:
+        text_list (List[str]): A list of strings to process.
+
+    Returns:
+        List[str]: A list of strings with numeric characters replaced by 'numero'.
+    """
+    pattern = re.compile(r'[0-9]')
     return [re.sub(pattern, ' numero ', r) for r in text_list]
 
 
