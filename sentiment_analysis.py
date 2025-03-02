@@ -231,6 +231,17 @@ def stopwords_removal(text, cached_stopwords = stopwords.words('portuguese')):
 
 
 def stemming_process(text, stemmer = RSLPStemmer()):
+    """
+    Apply stemming to the input text using the specified stemmer.
+
+    Parameters:
+        text (str): The input text to be stemmed.
+        stemmer (nltk.stem.api.StemmerI, optional): The stemmer to use for stemming. 
+            Defaults to RSLPStemmer.
+
+    Returns:
+        list: A list of stemmed words from the input text.
+    """
     return [stemmer.stem(c) for c in text.split()]
 
 
