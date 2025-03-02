@@ -161,14 +161,52 @@ def re_numbers(text_list):
 
 
 def re_negation(text_list):
+    """
+    Replace negation patterns in a list of text strings with the word 'negação'.
+
+    This function searches for specific negation patterns in each string of the
+    provided list and replaces them with the word 'negação'. The patterns include
+    various forms of the word 'não' and similar negations.
+
+    Args:
+        text_list (List[str]): A list of text strings to process.
+
+    Returns:
+        List[str]: A list of text strings with negation patterns replaced.
+    """
     pattern = re.compile(r'([nN][ãÃaA][oO]|[ñÑ]| [nN] )')
     return [re.sub(pattern, ' negação ', r) for r in text_list]
 
 def re_special_characters(text_list):
+    """
+    Remove special characters from each string in a list.
+
+    This function takes a list of strings and removes all non-word characters
+    from each string, replacing them with a space.
+
+    Args:
+        text_list (List[str]): A list of strings to process.
+
+    Returns:
+        List[str]: A list of strings with special characters replaced by spaces.
+    """
     pattern = re.compile(r'\W')
     return [re.sub(pattern, ' ', r) for r in text_list]
 
 def re_whitespaces(text_list):
+    """
+    Remove extra whitespaces from each string in a list.
+
+    This function processes a list of strings, replacing multiple consecutive
+    whitespace characters with a single space and removing trailing spaces
+    and tabs from each string.
+
+    Parameters:
+        text_list (List[str]): A list of strings to be processed.
+
+    Returns:
+        List[str]: A list of strings with extra whitespaces removed.
+    """
     white_spaces = [re.sub('\s+',' ',r) for r in text_list]
     white_space_removed = [re.sub('[ \t]+$',' ',r) for r in white_spaces]
     return white_space_removed
