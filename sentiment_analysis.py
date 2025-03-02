@@ -172,6 +172,20 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
         df_corpus_features
     return corpus_features, df_corpus_features
 
+def ngrams_count(corpus, ngram_range, n = -1, cached_stopwords = stopwords.words('portuguese')):
+    """
+    """
+    vectorizer = CountVectorizer(stop_words=cached_stopwords, ngram_range= ngram_range).fit(corpus)
+    bag_of_words = vectorizer.transform(corpus)
+    sum_of_words = bag_of_words.sum(axis = 0)
+    words_freq = [(word, sum_of_words[0, idx]) for word, idx in vectorizer.vocabulary_.items()]
+    words_freq = sorted(words_freq, key = lambda x : x[1], reverse= True)
+    total_list = words_freq[:n]
+
+    count_df = pd.DataFrame(total_list, columns = ['ngram','count'])
+    return count_df
+
+
 
 if __name__ == "__main__":
     reviews = list(df_comments['comment'].values)
