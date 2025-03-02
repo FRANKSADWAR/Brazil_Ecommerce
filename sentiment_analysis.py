@@ -247,6 +247,17 @@ def stemming_process(text, stemmer = RSLPStemmer()):
 
 #### Feature Extraction : CountVectorizer, TF-IDF
 def extract_features_from_corpus(corpus, vectorizer, df =False):
+    """
+    Extracts features from a given text corpus using a specified vectorizer.
+
+    Parameters:
+        corpus (List[str]): The text corpus from which to extract features.
+        vectorizer (BaseEstimator): The vectorizer to use for feature extraction, such as TfidfVectorizer or CountVectorizer.
+        df (bool, optional): If True, returns a DataFrame of the features. Defaults to False.
+
+    Returns:
+        Tuple[np.ndarray, Optional[pd.DataFrame]]: A tuple containing the feature matrix as a NumPy array and, if requested, a DataFrame with feature names as columns.
+    """
     corpus_features = vectorizer.fit_transform(corpus).toarray()
     feature_names = vectorizer.get_feature_names()
     df_corpus_features = None
