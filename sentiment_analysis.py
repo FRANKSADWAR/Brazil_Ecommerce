@@ -213,6 +213,20 @@ def re_whitespaces(text_list):
 
 
 def stopwords_removal(text, cached_stopwords = stopwords.words('portuguese')):
+    """
+    Remove Portuguese stopwords from the given text.
+
+    This function takes a string of text and removes all words that are present
+    in the list of cached Portuguese stopwords. The comparison is case-insensitive.
+
+    Parameters:
+        text (str): The input text from which stopwords are to be removed.
+        cached_stopwords (list, optional): A list of stopwords to be removed. 
+            Defaults to the Portuguese stopwords from the NLTK library.
+
+    Returns:
+        list: A list of words from the input text with stopwords removed.
+    """
     return [c.lower() for c in text.split() if c.lower() not in cached_stopwords]
 
 
