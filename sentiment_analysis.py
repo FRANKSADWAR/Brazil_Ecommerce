@@ -131,6 +131,10 @@ def re_dates(text_list:List[str]) -> List[str]:
 
 
 def re_money(text_list):
+    """
+    Args:
+    text_list (List): a list containing strings, where each string may contain Brazillian currency
+    """
     pattern = re.compile(r'[R]{0,1}\$[ ]{0,}\d+(,|\.)\d+')
     return [re.sub(pattern, ' dinheiro ',r) for r in text_list]
 
