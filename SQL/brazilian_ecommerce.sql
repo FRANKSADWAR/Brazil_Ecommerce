@@ -625,4 +625,5 @@ SELECT
     users.email,
     users.company
     FROM customer_list AS cl LEFT JOIN users ON cl.customer_name = users.company
-    WHERE cl.mobile_no = ""
+    AND cl.customer_group NOT IN ('Off Taker')
+    AND users.company NOT IN ('agriBORA')
