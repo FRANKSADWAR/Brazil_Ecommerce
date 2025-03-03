@@ -345,5 +345,9 @@ if __name__ == "__main__":
                label_names = df_comments.query('sentiment_label in ("positive","negative")')['sentiment_label'].value_counts().index,
                ax=ax, colors = ['darkslateblue','crimson'])
     
-    
 
+    ## Lets plot the n-grams to get an idea of how the bag of words look like using the grams
+    positive_comments = df_comments[df_comments['sentiment_label'] == "positive"]['stemming']
+    negative_comments = df_comments.query('sentiment_label == "negative"')['stemming']
+
+    ## Get the top 10 unigrams (one word)
