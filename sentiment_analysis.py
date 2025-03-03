@@ -13,15 +13,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
 nltk.download('stopwords')
 nltk.download('rslp')
-
-path = "data/"
-olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
-
-df_reviews = olist_order_reviews.loc[:,['review_score','review_comment_message']]
-df_comments = df_reviews.dropna(subset=['review_comment_message'])
-df_comments = df_comments.reset_index(drop = True)
-df_comments.columns = ['score','comment']
-
+from viz_utils import donut_plot
 
 
 def find_patterns(re_pattern, text_list):
@@ -283,6 +275,14 @@ def ngrams_count(corpus, ngram_range, n = -1, cached_stopwords = stopwords.words
 
 
 if __name__ == "__main__":
+    path = "data/"
+    olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
+
+    df_reviews = olist_order_reviews.loc[:,['review_score','review_comment_message']]
+    df_comments = df_reviews.dropna(subset=['review_comment_message'])
+    df_comments = df_comments.reset_index(drop = True)
+    df_comments.columns = ['score','comment']
+
     reviews = list(df_comments['comment'].values)
     reviews_breakline = replace_breakline(reviews)
     reviews_hyperlinks = replace_hyperlinks(reviews_breakline)
@@ -326,3 +326,24 @@ if __name__ == "__main__":
     ## extractng features for the corpus
     tfidf_features, df_tfidf_features = extract_features_from_corpus(reviews_stemmer, tfidf_vectorizer, df=True)
     print(f'Shape of the TF-IDF feature matrix : {tfidf_features.shape}')
+
+
+    ### Labelling data by mapping the scores to either positive or negative comments
+    score_map = {
+        1 : 'negative',
+        2: 'negative',
+        3 : 'positive',
+        4: 'positive',
+        5: 'positive'
+    }
+    df_comments['sentiment_label'] = df_comments['score'].map(score_map)
+    
+    ### Plot to verify the labelled data
+    fig, ax = plt.subplot(figsize = (10, 12))
+    donut_plot(df_comments.query('sentiment_label in ("positive","negative")'),
+               'sentiment_label', 
+               label_names = df_comments.query('sentiment_label in ("positive","negative")')['sentiment_label'].value_counts().index,
+               ax=ax, colors = ['darkslateblue','crimson'])
+    
+    
+
