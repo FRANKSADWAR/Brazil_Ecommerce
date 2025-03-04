@@ -13,7 +13,7 @@ from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
 nltk.download('stopwords')
 nltk.download('rslp')
-from viz_utils import donut_plot
+from viz_utils import donut_plot, format_spines
 
 
 def find_patterns(re_pattern, text_list):
@@ -386,3 +386,24 @@ if __name__ == "__main__":
         'Top Trigrams on positive comments': trigrams_pos,
         'Top Trigrams on Negative comments': trigrams_neg
     }
+
+    fig, ax = plt.subplots(nrows = 3, ncols = 2, figsize = (15, 18))
+    i, j = 0,0
+    colors = ['Blues_r','Reds_r']
+    for title, ngram_data in ngram_dict_plot.items():
+        ax = ax[i, j]
+        sns.barplot(x = 'count', y='ngram', data = ngram_data, ax=ax, palette=colors[j])
+
+        format_spines(ax, right_border=False)
+        ax.set_title(title, size = 14)
+        ax.set_ylabel('')
+        ax.set_xlabel('')
+
+        ## Incrementing the Index
+        j += 1
+        if j == 2:
+            j = 0
+            i += 1
+    plt.tight_layout()
+    plt.show()
+
