@@ -290,6 +290,46 @@ def ngrams_count(corpus, ngram_range, n = -1, cached_stopwords = stopwords.words
 
 
 
+### Create a pipeline for text transformation from a corpus to a bag of words representation
+class ApplyRegex(BaseEstimator, TransformerMixin):
+
+    def __init__(self, regex_transformers):
+        self.regex_transformer = regex_transformers
+
+    def fit(self, X, y = None):
+        return self
+    
+    def transform(self, X, y = None):
+        ## Applying all regex functions in the regex transformers dictionary
+        for regex_name, regex_function in self.regex_transformer.items():
+            X = regex_function(X)
+        return X
+    
+class StopWordsRemoval(BaseEstimator, TransformerMixin):
+    def __init__(self, text_stopwords):
+        self.text_stopwords = text_stopwords
+
+    def fit(self, X, y = None):
+        return self
+    
+    def fit_transform(self, X, y = None, **fit_params):
+        return [' '.join(stopwords_removal(comment, self.text_stopwords)) for comment in X]
+    
+class StemmingProcess(BaseEstimator, TransformerMixin):
+    def __init__(self, stemmer):
+        self.stemmer = stemmer
+
+    
+
+
+
+
+
+
+
+
+
+
 if __name__ == "__main__":
     path = "data/"
     olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
