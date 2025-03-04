@@ -277,7 +277,7 @@ def ngrams_count(corpus, ngram_range, n = -1, cached_stopwords = stopwords.words
     vectorizer = CountVectorizer(stop_words=cached_stopwords, ngram_range= ngram_range).fit(corpus)
     bag_of_words = vectorizer.transform(corpus)
     sum_of_words = bag_of_words.sum(axis = 0)
-    
+
     ## calculate the frequency of each n-gram
     words_freq = [(word, sum_of_words[0, idx]) for word, idx in vectorizer.vocabulary_.items()]
 
@@ -367,3 +367,22 @@ if __name__ == "__main__":
     negative_comments = df_comments.query('sentiment_label == "negative"')['stemming']
 
     ## Get the top 10 unigrams (one word)
+    unigrams_pos = ngrams_count(positive_comments, (1,1), 10)
+    unigrams_neg = ngrams_count(negative_comments, (1,1), 10)
+
+    ## Extract the top 10 bigrams by sentiment
+    bigrams_pos = ngrams_count(positive_comments, (2,2), 10)
+    bigrams_neg = ngrams_count(negative_comments, (2,2), 10)
+
+    ### Extracting top 10 trigrams by sentiment category
+    trigrams_pos = ngrams_count(positive_comments, (3,3), 10)
+    trigrams_neg = ngrams_count(negative_comments, (3,3), 10)
+
+    ngram_dict_plot = {
+        'Top unigrams on Positive comments': unigrams_pos,
+        'Top unigrams on negative comments': unigrams_neg,
+        'Top Bigrams on positive comments': bigrams_pos,
+        'Top Bigrams on Negative comments': bigrams_neg,
+        'Top Trigrams on positive comments': trigrams_pos,
+        'Top Trigrams on Negative comments': trigrams_neg
+    }
