@@ -319,6 +319,21 @@ class StemmingProcess(BaseEstimator, TransformerMixin):
     def __init__(self, stemmer):
         self.stemmer = stemmer
 
+    def fit(self, X, y = None):
+        return self
+    
+    def transform(self, X, y = None):
+        return [' '.join(stemming_process(comment, self.stemmer)) for comment in X]
+    
+class TextFeatureExtraction(BaseEstimator, TransformerMixin):
+    def __init__(self, vectorizer):
+        self.vectorizer = vectorizer
+
+    def fit(self, X, y = None):
+        return self
+    
+    def transform(self, X, y = None):
+        return self.vectorizer.fit_transform(X).toarray()
     
 
 
