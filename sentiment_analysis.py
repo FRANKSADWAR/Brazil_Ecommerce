@@ -261,11 +261,27 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
 
 def ngrams_count(corpus, ngram_range, n = -1, cached_stopwords = stopwords.words('portuguese')):
     """
+    Generate a DataFrame of n-grams and their frequencies from a given text corpus.
+
+    Parameters:
+        corpus (List[str]): A list of text documents to analyze.
+        ngram_range (tuple): The range of n-values for different n-grams to be extracted.
+        n (int, optional): The number of top n-grams to return. Defaults to -1, which returns all n-grams.
+        cached_stopwords (List[str], optional): A list of stopwords to exclude from the analysis. Defaults to Portuguese stopwords.
+
+    Returns:
+        pd.DataFrame: A DataFrame containing n-grams and their corresponding frequencies, sorted in descending order of frequency.
     """
+
+    ## Fit the vectorizer to the corpus and transform it to a bag of words representation
     vectorizer = CountVectorizer(stop_words=cached_stopwords, ngram_range= ngram_range).fit(corpus)
     bag_of_words = vectorizer.transform(corpus)
     sum_of_words = bag_of_words.sum(axis = 0)
+    
+    ## calculate the frequency of each n-gram
     words_freq = [(word, sum_of_words[0, idx]) for word, idx in vectorizer.vocabulary_.items()]
+
+    ## sort the n-grams by frequency in descending order
     words_freq = sorted(words_freq, key = lambda x : x[1], reverse= True)
     total_list = words_freq[:n]
 
