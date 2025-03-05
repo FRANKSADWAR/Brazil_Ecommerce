@@ -468,9 +468,13 @@ if __name__ == "__main__":
         'special_characters': re_special_characters,
         'whitespaces' : re_whitespaces
     }
+    
     vectorizer = TfidfVectorizer(max_features = 300, min_df=7, max_df=0.8, stop_words=pt_stopwords)
 
     ## Building the pipeline
     text_pipeline = Pipeline([
-        ('regex', )
+        ('regex', ApplyRegex(regex_transformers)),
+        ('stopwords', StopWordsRemoval(pt_stopwords)),
+        ('stemming', StemmingProcess(RSLPStemmer())),
+        ('text_features', TextFeatureExtraction(vectorizer))
     ])
