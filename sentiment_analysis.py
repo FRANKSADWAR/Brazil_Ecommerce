@@ -9,6 +9,8 @@ import re
 from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.pipeline import Pipeline
+
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
 nltk.download('stopwords')
@@ -336,15 +338,6 @@ class TextFeatureExtraction(BaseEstimator, TransformerMixin):
         return self.vectorizer.fit_transform(X).toarray()
     
 
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     path = "data/"
     olist_order_reviews = pd.read_csv(path+'olist_order_reviews_dataset.csv')
@@ -462,3 +455,22 @@ if __name__ == "__main__":
     plt.tight_layout()
     plt.show()
 
+
+
+    ## Defining the regex transformers
+    regex_transformers = {
+        'break_line' : replace_breakline,
+        'hyperlinks': replace_hyperlinks,
+        'dates' : re_dates,
+        'money' : re_money,
+        'numbers' : re_numbers,
+        'negation': re_negation,
+        'special_characters': re_special_characters,
+        'whitespaces' : re_whitespaces
+    }
+    vectorizer = TfidfVectorizer(max_features = 300, min_df=7, max_df=0.8, stop_words=pt_stopwords)
+
+    ## Building the pipeline
+    text_pipeline = Pipeline([
+        ('regex', )
+    ])
