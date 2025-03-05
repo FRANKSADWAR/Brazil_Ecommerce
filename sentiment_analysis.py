@@ -10,6 +10,7 @@ from nltk.corpus import stopwords
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
+from sklearn.model_selection import train_test_split
 
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
@@ -485,3 +486,15 @@ if __name__ == "__main__":
 
     X = olist_order_reviews['review_comment_message'][idx_reviews].values.tolist()
     y = score.apply(lambda x: 1 if x == "positive" else 0).values
+
+    ## Using the Pipeline to transform the data into features
+    X_processed = text_pipeline.fit_transform(X)
+
+    ## What is the class balance between negative and positive comments ?
+    X_train, X_test, y_train, y_test = train_test_split(X_processed, y, test_size = 0.2, random_state= 42)
+
+    print(f'Shape of the X_train data : {len(X_train)} - Number of features: {len(X_train[0])}')
+    print(f'Length of X_test data: {len(X_test)} -Number of features : {len(X_test[0])}')
+
+
+    ### Sentiment Classification
