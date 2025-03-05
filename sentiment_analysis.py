@@ -483,5 +483,5 @@ if __name__ == "__main__":
     idx_reviews = olist_order_reviews['review_comment_message'].dropna().index
     score = olist_order_reviews['review_score'][idx_reviews].map(score_map)
 
-    X = list(olist_order_reviews['review_comment_message'][idx_reviews].values)
+    X = olist_order_reviews['review_comment_message'][idx_reviews].values.tolist()
     y = score.apply(lambda x: 1 if x == "positive" else 0).values
