@@ -468,7 +468,7 @@ if __name__ == "__main__":
         'special_characters': re_special_characters,
         'whitespaces' : re_whitespaces
     }
-    
+
     vectorizer = TfidfVectorizer(max_features = 300, min_df=7, max_df=0.8, stop_words=pt_stopwords)
 
     ## Building the pipeline
@@ -478,3 +478,10 @@ if __name__ == "__main__":
         ('stemming', StemmingProcess(RSLPStemmer())),
         ('text_features', TextFeatureExtraction(vectorizer))
     ])
+
+    ### Defining the target variable and the independent variables
+    idx_reviews = olist_order_reviews['review_comment_message'].dropna().index
+    score = olist_order_reviews['review_score'][idx_reviews].map(score_map)
+
+    X = list(olist_order_reviews['review_comment_message'][idx_reviews].values)
+    y = score.apply(lambda x: 1 if x == "positive" else 0).values
