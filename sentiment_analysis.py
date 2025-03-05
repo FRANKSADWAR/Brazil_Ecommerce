@@ -18,6 +18,11 @@ nltk.download('stopwords')
 nltk.download('rslp')
 from viz_utils import donut_plot, format_spines
 
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.naive_bayes import GaussianNB
+import lightgbm as gbm
+
 
 def find_patterns(re_pattern, text_list):
     p = re.compile(re_pattern)
@@ -497,4 +502,25 @@ if __name__ == "__main__":
     print(f'Length of X_test data: {len(X_test)} -Number of features : {len(X_test[0])}')
 
 
-    ### Sentiment Classification
+    ### Sentiment Classification 
+
+    ## 1. Logistic regression parameters
+    log_reg_param_grid = {
+        'C': np.linspace(0.1, 10, 20),
+        'penalty': ['l1', 'l2'],
+        'class_weight' : ['balanced', None],
+        'random_state': [42],
+        'solver' : ['liblinear']
+    }
+
+    ## Setting up classifiers
+    set_classifiers = {
+        'Logistic Regression': {
+            'model' : LogisticRegression(),
+            'params': log_reg_param_grid
+        },
+        'Naive Bayes' :{
+            'model': GaussianNB(),
+            'params' : {}
+        }
+    }
