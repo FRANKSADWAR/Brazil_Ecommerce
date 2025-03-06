@@ -260,8 +260,8 @@ class BinaryClassifiersAnalysis:
             self.classifiers_info[model_name]['test_performance'] = test_performance
 
             # Building and unique DataFrame with performances retrieved
-            model_performance = train_performance.append(test_performance)
-            df_performances = df_performances.append(model_performance)
+            model_performance = train_performance.concat(test_performance, ignore_index = True)
+            df_performances = df_performances.concat(model_performance,  ignore_index = True)
 
             # Saving some attributes on model_info dictionary for further access
             model_data = {
