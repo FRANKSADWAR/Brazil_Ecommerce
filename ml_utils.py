@@ -27,7 +27,6 @@ from viz_utils import format_spines, AnnotateBars
 from sklearn.model_selection import RandomizedSearchCV, cross_val_score, cross_val_predict, learning_curve
 from sklearn.metrics import roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, roc_curve, confusion_matrix
 import shap
-
 from sklearn.cluster import KMeans
 
 
