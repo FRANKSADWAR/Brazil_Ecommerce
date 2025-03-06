@@ -17,6 +17,7 @@ from nltk.stem import PorterStemmer, RSLPStemmer, SnowballStemmer
 nltk.download('stopwords')
 nltk.download('rslp')
 from viz_utils import donut_plot, format_spines
+from ml_utils import BinaryClassifiersAnalysis
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
@@ -524,3 +525,13 @@ if __name__ == "__main__":
             'params' : {}
         }
     }
+
+    clf_tool = BinaryClassifiersAnalysis()
+    clf_tool.fit(set_classifiers,X_train. y_train, random_search=True, scoring ='accuracy')
+
+    ## Evaluate the metrics of the models
+    df_performances = clf_tool.evaluate_performance(X_train, y_train, X_test, y_test, cv = 5)
+    df_performances.reset_index(drop=True).style.background_gradient(cmap='Blues')
+
+    clf_tool.plot_confusion_matrix(classes = ["Negative", "Positive"])
+    

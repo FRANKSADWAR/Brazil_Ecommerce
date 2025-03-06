@@ -147,7 +147,7 @@ class BinaryClassifiersAnalysis:
         delta_time = t1 - t0
         train_performance = {}
         train_performance['model'] = model_name
-        train_performance['approach'] = f'Treino {cv} K-folds'
+        train_performance['approach'] = f'Train {cv} K-folds'
         train_performance['acc'] = round(accuracy, 4)
         train_performance['precision'] = round(precision, 4)
         train_performance['recall'] = round(recall, 4)
