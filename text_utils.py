@@ -170,7 +170,7 @@ def extract_features_from_corpus(corpus, vectorizer, df=False):
     # Extracting features
     import pandas as pd
     corpus_features = vectorizer.fit_transform(corpus).toarray()
-    features_names = vectorizer.get_feature_names()
+    features_names = vectorizer.get_feature_names_out()
 
     # Transforming into a dataframe to give interpetability to the process
     df_corpus_features = None

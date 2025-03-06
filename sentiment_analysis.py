@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib.gridspec import GridSpec
 from typing import List, Dict
 import nltk
 
@@ -260,7 +261,7 @@ def extract_features_from_corpus(corpus, vectorizer, df =False):
         Tuple[np.ndarray, Optional[pd.DataFrame]]: A tuple containing the feature matrix as a NumPy array and, if requested, a DataFrame with feature names as columns.
     """
     corpus_features = vectorizer.fit_transform(corpus).toarray()
-    feature_names = vectorizer.get_feature_names()
+    feature_names = vectorizer.get_feature_names_out()
     df_corpus_features = None
     if df:
         df_corpus_features = pd.DataFrame(corpus_features, columns=feature_names)
@@ -321,7 +322,7 @@ class StopWordsRemoval(BaseEstimator, TransformerMixin):
     def fit(self, X, y = None):
         return self
     
-    def fit_transform(self, X, y = None, **fit_params):
+    def transform(self, X, y = None, **fit_params):
         return [' '.join(stopwords_removal(comment, self.text_stopwords)) for comment in X]
     
 class StemmingProcess(BaseEstimator, TransformerMixin):
@@ -408,9 +409,9 @@ if __name__ == "__main__":
         5: 'positive'
     }
     df_comments['sentiment_label'] = df_comments['score'].map(score_map)
-    
+
     ### Plot to verify the labelled data
-    fig, ax = plt.subplot(figsize = (10, 12))
+    fig, ax = plt.subplots(figsize = (10, 12))
     donut_plot(df_comments.query('sentiment_label in ("positive","negative")'),
                'sentiment_label', 
                label_names = df_comments.query('sentiment_label in ("positive","negative")')['sentiment_label'].value_counts().index,
@@ -446,13 +447,13 @@ if __name__ == "__main__":
     i, j = 0,0
     colors = ['Blues_r','Reds_r']
     for title, ngram_data in ngram_dict_plot.items():
-        ax = ax[i, j]
-        sns.barplot(x = 'count', y='ngram', data = ngram_data, ax=ax, palette=colors[j])
+        axs = ax[i, j]
+        sns.barplot(x = 'count', y='ngram', data = ngram_data, ax=axs, palette=colors[j])
 
-        format_spines(ax, right_border=False)
-        ax.set_title(title, size = 14)
-        ax.set_ylabel('')
-        ax.set_xlabel('')
+        format_spines(axs, right_border=False)
+        axs.set_title(title, size = 14)
+        axs.set_ylabel('')
+        axs.set_xlabel('')
 
         ## Incrementing the Index
         j += 1
