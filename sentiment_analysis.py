@@ -558,3 +558,8 @@ if __name__ == "__main__":
             text = 'Negative'
             class_proba = 100 * round(proba[0][0],2)
             color = 'crimson'
+        ax.text(0.5, 0.5, text, fontsize = 50, ha ='center', color = color)
+        ax.text(0.5, 0.20, str(class_proba) + '%', fontsize = 14, ha = 'center')
+        ax.axis('off')
+        ax.set_title('Sentiment Analysis', fontsize = 14)
+        plt.show()
