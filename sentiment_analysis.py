@@ -563,3 +563,7 @@ if __name__ == "__main__":
         ax.axis('off')
         ax.set_title('Sentiment Analysis', fontsize = 14)
         plt.show()
+
+
+    ### Using the model function
+    
