@@ -535,4 +535,26 @@ if __name__ == "__main__":
     df_performances.reset_index(drop=True).style.background_gradient(cmap='Blues')
 
     clf_tool.plot_confusion_matrix(classes = ["Negative", "Positive"])
-    
+
+
+    ## Final Implementation of the sentiment analysis
+
+    def sentiment_analysis(text, pipeline, vectorizer, model):
+        if not isinstance(text, List):
+            text = [text]
+        text_prep = pipeline.fit_transform(text)
+        matrix = vectorizer.transform(text_prep)
+
+        ## Sentiment classification
+        pred = model.predict(matrix)
+        proba = model.predict_proba(matrix)
+
+        fig, ax = plt.subplots(fisize = (5, 3))
+        if pred[0] == 1:
+            text = 'Positive'
+            class_proba = 100 * round(proba[0][1],2)
+            color = 'seagreen'
+        else:
+            text = 'Negative'
+            class_proba = 100 * round(proba[0][0],2)
+            color = 'crimson'
