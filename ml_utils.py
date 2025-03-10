@@ -233,7 +233,7 @@ class BinaryClassifiersAnalysis:
 
         Application
         -----------
-        # Evaluating performance on training and testint
+        # Evaluating performance on training and test instances
         df_performance = trainer.evaluate_performance(X_train, y_train, X_test, y_test, save=True)
         """
 
@@ -243,8 +243,9 @@ class BinaryClassifiersAnalysis:
 
             # Validating if the model was already trained (the key 'train_performance' will be at model_info dict if so)
             if 'train_performance' in model_info.keys():
-                df_performances = df_performances.append(model_info['train_performance'])
-                df_performances = df_performances.append(model_info['test_performance'])
+                df_performances = pd.concat([df_performances, model_info['train_performance'], model_info['test_performance']])
+                #df_performances = df_performances.append(model_info['train_performance'])
+                #df_performances = df_performances.append(model_info['test_performance'])
                 continue
 
             # Returning the estimator for calling the evaluation functions
