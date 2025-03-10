@@ -288,18 +288,6 @@ class BinaryClassifiersAnalysis:
 
             # Validating overwriting or append on data already saved
             if overwrite:
-                df_performances.to_csv(performances_filepath, index=False)
-            else:
-                try:
-                    # If overwrite is False, tries reading existing metrics data and applying append on it
-                    log_performances = pd.read_csv(performances_filepath)
-                    full_performances = log_performances.append(df_performances)
-                    full_performances.to_csv(performances_filepath, index=False)
-                except FileNotFoundError:
-                    print('Log de performances do modelo não existente no caminho especificado. Salvando apenas o atual.')
-                    df_performances.to_csv(performances_filepath, index=False)
-
-            if overwrite:
                 df_performances.to_csv(performances_filepath, index = False)
                 with open(performances_filepath, 'w') as file:
                     df_performances.to_csv(file, index = False)
@@ -307,9 +295,12 @@ class BinaryClassifiersAnalysis:
                 try:
                     log_performances = pd.read_csv(performances_filepath)
                     full_performances = pd.concat([log_performances, df_performances], ignore_index= True)
-                    full_performances.to_csv(performances_filepath, index =False)
+                    with open(performances_filepath, 'w') as file:
+                        full_performances.to_csv(file, index = False)
                 except FileNotFoundError:
-                    pass
+                    logging.ERROR('Log de performances do modelo não existente no caminho especificado. Salvando apenas o atual.')
+                    with open(performances_filepath, 'w') as file:
+                        df_performances.to_csv(file, index =False)
 
         return df_performances
 
