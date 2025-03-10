@@ -566,4 +566,11 @@ if __name__ == "__main__":
 
 
     ### Using the model function
+    model = clf_tool.classifiers_info['LogisticRegression']['estimator']
+    prod_pipeline = Pipeline([
+        ('regex', ApplyRegex(regex_transformers)),
+        ('stopwords', StopWordsRemoval(stopwords.words('portuguese'))),
+        ('stemming', StemmingProcess(RSLPStemmer()))
+    ])
+    vectorizer = text_pipeline.named_steps['text_features'].vectorizer
     
