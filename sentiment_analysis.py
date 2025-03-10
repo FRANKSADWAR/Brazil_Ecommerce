@@ -538,7 +538,6 @@ if __name__ == "__main__":
 
 
     ## Final Implementation of the sentiment analysis
-
     def sentiment_analysis(text, pipeline, vectorizer, model):
         if not isinstance(text, List):
             text = [text]
@@ -548,6 +547,8 @@ if __name__ == "__main__":
         ## Sentiment classification
         pred = model.predict(matrix)
         proba = model.predict_proba(matrix)
+        print(f'{type(proba)} \n')
+        print(f'{type(pred)} \n')
 
         fig, ax = plt.subplots(fisize = (5, 3))
         if pred[0] == 1:
@@ -573,4 +574,5 @@ if __name__ == "__main__":
         ('stemming', StemmingProcess(RSLPStemmer()))
     ])
     vectorizer = text_pipeline.named_steps['text_features'].vectorizer
-    
+    comment = "Produto muito ruim! A entrega atrasou e custou muito dinheiro."
+    sentiment_analysis(comment, pipeline=prod_pipeline, vectorizer=vectorizer, model = model)
