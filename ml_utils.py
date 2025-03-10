@@ -28,6 +28,7 @@ from sklearn.model_selection import RandomizedSearchCV, cross_val_score, cross_v
 from sklearn.metrics import roc_auc_score, accuracy_score, precision_score, recall_score, f1_score, roc_curve, confusion_matrix
 import shap
 from sklearn.cluster import KMeans
+import logging
 
 
 """
@@ -249,7 +250,8 @@ class BinaryClassifiersAnalysis:
                 continue
 
             # Returning the estimator for calling the evaluation functions
-            print(f'Evaluating model {model_name}\n')
+            logging.basicConfig(level=logging.INFO)
+            logging.info(f'Evaluating model {model_name}')
             estimator = model_info['estimator']
 
             # Retrieving training and testing metrics by calling inner functions
@@ -296,6 +298,18 @@ class BinaryClassifiersAnalysis:
                 except FileNotFoundError:
                     print('Log de performances do modelo não existente no caminho especificado. Salvando apenas o atual.')
                     df_performances.to_csv(performances_filepath, index=False)
+
+            if overwrite:
+                df_performances.to_csv(performances_filepath, index = False)
+                with open(performances_filepath, 'w') as file:
+                    df_performances.to_csv(file, index = False)
+            else:
+                try:
+                    log_performances = pd.read_csv(performances_filepath)
+                    full_performances = pd.concat([log_performances, df_performances], ignore_index= True)
+                    full_performances.to_csv(performances_filepath, index =False)
+                except FileNotFoundError:
+                    pass
 
         return df_performances
 
