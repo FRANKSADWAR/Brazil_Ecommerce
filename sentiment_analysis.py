@@ -575,4 +575,7 @@ if __name__ == "__main__":
     ])
     vectorizer = text_pipeline.named_steps['text_features'].vectorizer
     comment = "Produto muito ruim! A entrega atrasou e custou muito dinheiro."
-   #sentiment_analysis(comment, pipeline=prod_pipeline, vectorizer=vectorizer, model = model)
+    sentiment_analysis(comment, pipeline=prod_pipeline, vectorizer=vectorizer, model = model)
+    from sklearn.model_selection import learning_curve
+    from sklearn.model_selection import validation_curve
+    
