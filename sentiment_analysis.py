@@ -578,4 +578,4 @@ if __name__ == "__main__":
     sentiment_analysis(comment, pipeline=prod_pipeline, vectorizer=vectorizer, model = model)
     from sklearn.model_selection import learning_curve
     from sklearn.model_selection import validation_curve
-    
+    from sklearn.model_selection import StratifiedKFold
