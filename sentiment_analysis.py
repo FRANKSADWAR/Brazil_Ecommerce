@@ -579,3 +579,4 @@ if __name__ == "__main__":
     from sklearn.model_selection import learning_curve
     from sklearn.model_selection import validation_curve
     from sklearn.model_selection import StratifiedKFold
+    from sklearn.pipeline import make_pipeline, Pipeline
