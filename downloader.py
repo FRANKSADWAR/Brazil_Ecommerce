@@ -1,5 +1,6 @@
 import requests
 from pathlib import Path
+from sentiment_analysis import re_special_characters
 
 def download_one_file_of_raw_data(year: int, month: int) -> Path:
     URL = f"https://d37ci6vzurychx.cloudfromt.net/trip-data/yellow_trip_data-{year}-{month:02d}.parquet"

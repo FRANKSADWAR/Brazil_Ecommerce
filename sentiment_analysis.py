@@ -377,7 +377,7 @@ if __name__ == "__main__":
 
     reviews_whitespaces = re_whitespaces(reviews_special_characters)
     df_comments['re_whitespaces'] = reviews_whitespaces
-
+    
     pt_stopwords = stopwords.words('portuguese')
     print(f'Total number of Portuguese stop words in ntlk.corpus module : {len(pt_stopwords)}')
     print(pt_stopwords[:10])
