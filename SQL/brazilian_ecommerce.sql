@@ -68,7 +68,7 @@ CREATE TABLE olist_order_items (
     price DECIMAL(10,2),
     freight_value DECIMAL(10,2)
 )
-
+CREATE INDEX item_id_idx ON olist_order_items(order_item_id);
   
 
 
