@@ -81,6 +81,7 @@ CREATE TABLE olist_order_reviews(
     review_creation_date TIMESTAMP,
     review_answer_timestamp TIMESTAMP
 )
+CREATE INDEX order_id_idx ON olist_order_reviews(order_id);
 
 CREATE TABLE olist_order_payments(
     order_id VARCHAR(255) NOT NULL,
