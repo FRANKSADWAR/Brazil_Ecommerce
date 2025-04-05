@@ -41,7 +41,7 @@ CREATE TABLE olist_products(
     product_width_cm DECIMAL(10,1),
     product_category VARCHAR(255)
 )
-
+CREATE INDEX product_catehory_idx ON olist_products(product_category);
 
 
 CREATE TABLE olist_orders(
