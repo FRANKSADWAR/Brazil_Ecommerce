@@ -56,7 +56,7 @@ CREATE TABLE olist_orders(
     FOREIGN KEY(customer_id) REFERENCES olist_customers(customer_id) ON UPDATE CASCADE
 )
 CREATE INDEX purchase_time_idx ON olist_orders(order_purchase_timestamp);
-CREATE INDEX customer_ids ON olist_orders(customer_id)
+CREATE INDEX customer_ids ON olist_orders(customer_id);
 
 
 CREATE TABLE olist_order_items (
@@ -67,7 +67,9 @@ CREATE TABLE olist_order_items (
     shipping_limit_date TIMESTAMP,
     price DECIMAL(10,2),
     freight_value DECIMAL(10,2)
-    )
+)
+
+  
 
 
 CREATE TABLE olist_order_reviews(
