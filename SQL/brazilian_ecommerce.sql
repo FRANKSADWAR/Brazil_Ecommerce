@@ -41,7 +41,7 @@ CREATE TABLE olist_products(
     product_width_cm DECIMAL(10,1),
     product_category VARCHAR(255)
 )
-CREATE INDEX product_catehory_idx ON olist_products(product_category);
+CREATE INDEX product_category_idx ON olist_products(product_category);
 
 
 CREATE TABLE olist_orders(
@@ -55,6 +55,8 @@ CREATE TABLE olist_orders(
     order_estimated_delivery_date TIMESTAMP,
     FOREIGN KEY(customer_id) REFERENCES olist_customers(customer_id) ON UPDATE CASCADE
 )
+CREATE INDEX purchase_time_idx ON olist_orders(order_purchase_timestamp);
+CREATE INDEX customer_ids ON olist_orders(customer_id)
 
 
 CREATE TABLE olist_order_items (
