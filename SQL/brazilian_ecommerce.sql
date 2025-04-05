@@ -19,6 +19,7 @@ CREATE TABLE olist_customers (
     customer_id VARCHAR(255) NOT NULL PRIMARY KEY,
     customer_zip_code_prefix BIGINT NOT NULL
 )
+CREATE INDEX customer_idx ON olist_customers(customer_zip_code);
 
 
 CREATE TABLE olist_sellers(
