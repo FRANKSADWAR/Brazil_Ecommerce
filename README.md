@@ -13,7 +13,7 @@ Table of Contents
 - [Dataset, Tools and Technologies](#datasets-tools-technologies)
 - #Data Exploration and cleaning
 
-<h3><a href="#project-overview">Project Overview</a>Project Overview</h3>
+<h3><a href="#project-overview"></a>Project Overview</h3>
 
 # The data models
 ![Data Model](Images/Data_Model.png)
