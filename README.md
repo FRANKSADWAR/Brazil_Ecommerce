@@ -48,6 +48,21 @@ The goal of this project is to show the full analytics lifecycle: understand the
 **SQL (DDL & DML):** schema design and analytical queries
 
 **Metabase:** open-source, self-service analytics platform hosted in a private clous server, used for building the dashboards
+## Project Workflow
+### 1. Data Exploration
+- Loaded each dataset and inspected structure, data types and row counts
+- Checked for missing values, duplicates and inconsistent formats
+- Converted timestamp columns to proper datetime dtype
+- Standardised and translated product categories to English
+- Visualised distributions and trends with Matplotlib to build an understanding of the data before modelling
+### 2. Data modelling
+Designed a relational schema from the cleaned datasets
+- Created the tables with **SQL DDL**, defining primary keys, foreign keys and relationships between orders, customers, items, payments, reviews, products and sellers
+- Loaded the cleaned data into the database using mysqlimport
+
+### 3. Data analytics
+- SQL queries to answer business questions on revenue, orders, regions and products
+- Connected Metabase to the database and built questions and charts on top of the model
 
 ## Data Model
 The data model below shows how the Olist datasets are related:
@@ -78,7 +93,6 @@ Orders and regions
 
 Products analytics
 ![Products analytics](Images/image7.png)
-
 
 ## Live dashboard
 For the full interactive experience, with filters by period and product category, 
