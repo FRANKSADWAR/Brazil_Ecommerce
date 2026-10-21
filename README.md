@@ -12,8 +12,7 @@ Table of Contents
 - [Dataset, Tools and Technologies](#datasets-tools-technologies)
 - [Data Model](#data-model)
 - [Analytics Results](#analytics-results)
-- [Repository structure](#repository-structure)
-- [See results](#see-results)
+- [Live Dashboard](#live-dashboard)
 
 ## Project Overview
 Olist connects small businesses across Brazil to the country's major marketplaces. The public dataset contains roughly **100,000 orders placed between 2016 and 2018** across multiple marketplaces, and lets each order be viewed from several angles:
@@ -81,12 +80,6 @@ Products analytics
 ![Products analytics](Images/image7.png)
 
 
-## Repository structure
-```
-|------- Images                 # Data model diagram and dashboard screenshots
-|------- data/                  # Datasets used in the project
-|------- data_exploration/      # Python data cleaning & exploration files 
-|------- sql_analytics/         # SQL DDL and analytics queries  
-|------- .gitignore
-|------- README.md
-```
+## Live dashboard
+For the full interactive experience, with filters by period and product category, 
+use the [live dashboard](https://analytics.luminererp.com/public/dashboard/3fdb94bd-9be6-4c1b-9dbd-974a913ce136?period=2016-01-02~2019-02-01&product_category=computers&product_category=bed_bath_table&product_category=watches_gifts&product_category=home_appliances&product_category=furniture_bedroom&product_category=office_furniture&product_category=electronics&product_category=furniture_decor&tab=5-revenue).
