@@ -10,6 +10,7 @@ Table of Contents
 - [Project Overview](#project-overview)
 - [What This Project Demonstrates](#what-this-project-demonstrates)
 - [Dataset, Tools and Technologies](#datasets-tools-technologies)
+- []
 - [Data Model](#data-model)
 - [Analytics Results](#analytics-results)
 - [Live Dashboard](#live-dashboard)
@@ -34,6 +35,8 @@ The goal of this project is to show the full analytics lifecycle: understand the
 **Data modelling**: A normalised relational schema built with SQL DDL (keys, relationships, constraints)
 
 **SQL analytics**: Analytical queries over the modelled data to calculate revenue, order and product metrics.
+ 
+**DBeaver**: SQL Desktop client used for DDL & deriving entity relationship diagram (ERD).
 
 **BI & dashboarding**: An interactive, filterable Metabase dashboard published publicly.
 
