@@ -7,7 +7,10 @@ The project demonstrates how raw transaction data can be explored, cleaned, mode
 <a href="https://analytics.luminererp.com/public/dashboard/3fdb94bd-9be6-4c1b-9dbd-974a913ce136?period=2016-01-02~2019-02-01&product_category=computers&product_category=bed_bath_table&product_category=watches_gifts&product_category=home_appliances&product_category=furniture_bedroom&product_category=office_furniture&product_category=electronics&product_category=furniture_decor&tab=5-revenue">Explore the interactive Metabase dashboard</a>.
 
 Table of Contents
-- <h2 id="project-overview"></h2>
+- <h2 id="project-overview">Project Overview</h2>
+- <h2 id="what-the-project-demonstrates">What the project demonstrates</h2>
+- <h2 is="datasets-tools-tech">Dataset, tools & technologies</h2>
+
 - [Project Overview](#project-overview)
 - [What This Project Demonstrates](#what-this-project-demonstrates)
 - [Dataset, Tools and Technologies](#datasets-tools-technologies)
@@ -15,7 +18,7 @@ Table of Contents
 
 <h3><a href="#project-overview"></a>Project Overview</h3>
 
-# The data models
+
 ![Data Model](Images/Data_Model.png)
 
 
