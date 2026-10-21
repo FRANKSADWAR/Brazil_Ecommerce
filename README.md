@@ -15,7 +15,30 @@ Table of Contents
 - [Repository structure](#repository-structure)
 - [See results](#see-results)
 
+## Project Overview
+Olist connects small businesses across Brazil to the country's major marketplaces. The public dataset contains roughly **100,000 orders placed between 2016 and 2018** across multiple marketplaces, and lets each order be viewed from several angles:
 
+- **Orders:** status and delivery timeline
+- **Cashflow:** price, payment and freight performance
+- **Customers:** location
+- **Products:** category and attributes
+- **Feedback:** customer reviews
+
+A separate geolocation table maps Brazilian zip codes to latitude & longitude coordinates.
+
+The goal of this project is to show the full analytics lifecycle: understand the data, clean it, model it properly into a relational database, and turn it into a self-service dashboard that answers real business questions.
+
+## What This Project Demonstrates
+|---|---|
+| **Data cleaning & EDA** | Profiling, cleaning and visualising the raw CSVs with Pandas and Matplotlib |
+| **Data modelling** | A normalised relational schema built with SQL DDL (keys, relationships, constraints) |
+| **SQL analytics** | Analytical queries over the modelled data to calculate revenue, order and product metrics |
+| **BI & dashboarding** | An interactive, filterable Metabase dashboard published publicly |
+| **End-to-end thinking** | Moving from raw files to decision-ready insights in one reproducible workflow |
+
+
+
+## Dataset, Tools and Technologies
 
 
 ## Data Model
