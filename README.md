@@ -29,7 +29,7 @@ A separate geolocation table maps Brazilian zip codes to latitude & longitude co
 The goal of this project is to show the full analytics lifecycle: understand the data, clean it, model it properly into a relational database, and turn it into a self-service dashboard that answers real business questions.
 
 ## What This Project Demonstrates
-|---|---|
+
 | **Data cleaning & EDA** | Profiling, cleaning and visualising the raw CSVs with Pandas and Matplotlib |
 | **Data modelling** | A normalised relational schema built with SQL DDL (keys, relationships, constraints) |
 | **SQL analytics** | Analytical queries over the modelled data to calculate revenue, order and product metrics |
