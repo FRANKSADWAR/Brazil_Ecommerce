@@ -30,11 +30,15 @@ The goal of this project is to show the full analytics lifecycle: understand the
 
 ## What This Project Demonstrates
 
-| **Data cleaning & EDA** | Profiling, cleaning and visualising the raw CSVs with Pandas and Matplotlib |
-| **Data modelling** | A normalised relational schema built with SQL DDL (keys, relationships, constraints) |
-| **SQL analytics** | Analytical queries over the modelled data to calculate revenue, order and product metrics |
-| **BI & dashboarding** | An interactive, filterable Metabase dashboard published publicly |
-| **End-to-end thinking** | Moving from raw files to decision-ready insights in one reproducible workflow |
+**Data cleaning & EDA**: Profiling, cleaning and visualising the raw CSVs with Pandas and Matplotlib
+
+**Data modelling**: A normalised relational schema built with SQL DDL (keys, relationships, constraints)
+
+**SQL analytics**: Analytical queries over the modelled data to calculate revenue, order and product metrics.
+
+**BI & dashboarding**: An interactive, filterable Metabase dashboard published publicly.
+
+**End-to-end thinking**: Moving from raw files to decision-ready insights in one reproducible workflow.
 
 
 
