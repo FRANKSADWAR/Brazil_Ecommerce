@@ -55,6 +55,7 @@ data/*.prj
 data/*.dbf
 data/*.cpg
 data/*.shx
+data/.csv
 
 __pycache__/
 mlruns/
