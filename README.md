@@ -41,15 +41,24 @@ The goal of this project is to show the full analytics lifecycle: understand the
 **End-to-end thinking**: Moving from raw files to decision-ready insights in one reproducible workflow.
 
 
-
 ## Dataset, Tools and Technologies
+**Source:** [Brazilian E-Commerce Public Dataset by Olist (Kaggle)](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce).
 
+**Python:** Pandas and Matplotlib for data cleaning, exploration and visualization
+
+**SQL (DDL & DML):** schema design and analytical queries
+
+**Metabase:** open-source, self-service analytics platform hosted in a private clous server, used for building the dashboards
 
 ## Data Model
+The data model below shows how the Olist datasets are related:
+
 ![Data Model](Images/Data_Model.png)
 
 
 ## Analytics Results
+The dashboard looks at the market place from several perspectives.
+
 Sales revenue against orders placed in the platform
 ![Sales Revenue](Images/image1.png)
 
