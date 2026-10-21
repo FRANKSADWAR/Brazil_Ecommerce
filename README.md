@@ -1,5 +1,5 @@
 # Analytics on Brazilian Ecommerce
-This is a data modelling and data analytics project, dinnging into insights of the 
+This is a data modelling and data analytics project, digging into insights of the 
 Brazilian e-commerce market based on the Olist dataset. The dataset is free available from https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce.
 
 
@@ -25,3 +25,18 @@ Sales revenue against orders placed in the platform
 
 Monthly Sales Revenue trends
 ![Sales revenue trends](Images/image2.png)
+
+![Quarterly sales trends](Images/image3.png)
+
+Revenue trends
+![Revenue trends](Images/image4.png)
+
+Ordering trends
+
+![Order Overview](Images/image5.png)
+
+Orders and regions
+![Orders and regions](Images/image6.png)
+
+Products analytics
+![Products analytics](Images/image7.png)
